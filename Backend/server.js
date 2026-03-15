@@ -8,6 +8,8 @@ import noticeRoutes from "./routes/noticeRoutes.js";
 import galleryRoutes from "./routes/galleryRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import upcomingEventRoutes from "./routes/upcomingEventRoutes.js";
+import feeRoutes from "./routes/feeRoutes.js";
+import admissionRoutes from "./routes/admissionRoutes.js";
 
 dotenv.config();
 
@@ -29,6 +31,8 @@ app.use("/uploads",express.static("uploads"));
 app.use("/api/events",eventRoutes);
 app.use("/uploads",express.static("uploads"));
 app.use("/api/upcoming-events",upcomingEventRoutes);
+app.use("/api/fees", feeRoutes);
+app.use("/api/admission",admissionRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend Running 🚀");
