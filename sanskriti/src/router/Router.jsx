@@ -32,6 +32,9 @@ import AdminNotices from "../pages/AdminNotices";
 import AdminGallery from "../pages/AdminGallery";
 import AdminEvents from "../admin/AdminEvents";
 import AdminUpcomingEvents from "../admin/AdminUpcomingEvents";
+import AdminFee from "../admin/Adminfee";
+import AdminAdmission from "../admin/AdminAdmission";
+import Admindashboard from "../admin/Admindashboard";
 
 const router = createBrowserRouter([
   {
@@ -68,7 +71,10 @@ const router = createBrowserRouter([
       {path: "/admin-notices", element: <AdminNotices/>},
       {path: "/admin-gallery", element: <AdminGallery/>},
       {path: "/admin-events", element: <AdminEvents/>},
-      {path: "/admin-upcoming-events", element: <AdminUpcomingEvents/>}
+      {path: "/admin-upcoming-events", element: <AdminUpcomingEvents/>},
+      {path: "/admin-fee", element: <AdminFee/>},
+      {path: "/admin/admission", element: <AdminAdmission/>},
+      {path: "/admin-dashboard", element: <Admindashboard/>}
     ],
   },
 ]);

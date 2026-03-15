@@ -7,7 +7,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/araybhat1.png";
+import logo from "../../assets/araylogo.png";
 import { Link, Links } from "react-router-dom";
 import { label, path } from "framer-motion/client";
 
@@ -114,7 +114,9 @@ const Navbar = () => {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-2 md:gap-3 min-w-0">
+          <Link to={"/"}>
             <img src={logo} alt="logo" className="h-14 md:h-20 w-auto" />
+            </Link>
             <h1 className="text-sm font-bold text-green-800 uppercase md:hidden truncate">
               Aryabhatta National Public School
             </h1>
@@ -239,9 +241,11 @@ const Navbar = () => {
               </ul>
 
               <div className="p-4">
+              <Link to={"/login"}>
                 <button className="w-full bg-green-800 text-white py-3 rounded-xl font-semibold">
-                  Apply for Admission
+                  Admin LogIn
                 </button>
+                </Link>
               </div>
             </motion.div>
           </>
