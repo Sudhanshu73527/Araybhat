@@ -15,7 +15,7 @@ hurryMessage:""
 
 useEffect(()=>{
 
-fetch("http://localhost:5000/api/admission/get")
+fetch("https://araybhat-1.onrender.com/api/admission/get")
 
 .then(res=>res.json())
 
@@ -46,7 +46,7 @@ setForm({
 
 const saveData = async()=>{
 
-await fetch("http://localhost:5000/api/admission/save",{
+await fetch("https://araybhat-1.onrender.com/api/admission/save",{
 
 method:"POST",
 

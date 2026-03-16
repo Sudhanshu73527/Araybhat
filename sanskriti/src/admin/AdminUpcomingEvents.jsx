@@ -12,7 +12,7 @@ const [file,setFile] = useState(null);
 
 const fetchEvents = async()=>{
 
-const res = await fetch("http://localhost:5000/api/upcoming-events/all");
+const res = await fetch("https://araybhat-1.onrender.com/api/upcoming-events/all");
 
 const data = await res.json();
 
@@ -37,7 +37,7 @@ formData.append("date",date);
 formData.append("description",description);
 formData.append("image",file);
 
-await fetch("http://localhost:5000/api/upcoming-events/add",{
+await fetch("https://araybhat-1.onrender.com/api/upcoming-events/add",{
 
 method:"POST",
 body:formData
@@ -56,7 +56,7 @@ fetchEvents();
 
 const deleteEvent = async(id)=>{
 
-await fetch(`http://localhost:5000/api/upcoming-events/delete/${id}`,{
+await fetch(`https://araybhat-1.onrender.com/api/upcoming-events/delete/${id}`,{
 
 method:"DELETE"
 

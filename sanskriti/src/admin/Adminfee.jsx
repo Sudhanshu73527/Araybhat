@@ -22,7 +22,7 @@ const fetchFees = async () => {
 
 try{
 
-const res = await fetch("http://localhost:5000/api/fees/all");
+const res = await fetch("https://araybhat-1.onrender.com/api/fees/all");
 const data = await res.json();
 
 setFees(data);
@@ -59,7 +59,7 @@ const submitFee = async ()=>{
 
 try{
 
-const res = await fetch("http://localhost:5000/api/fees/add",{
+const res = await fetch("https://araybhat-1.onrender.com/api/fees/add",{
 
 method:"POST",
 

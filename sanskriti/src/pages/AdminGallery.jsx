@@ -8,7 +8,7 @@ const [file,setFile] = useState(null);
 
 const fetchImages = async()=>{
 
-const res = await fetch("http://localhost:5000/api/gallery/all");
+const res = await fetch("https://araybhat-1.onrender.com/api/gallery/all");
 
 const data = await res.json();
 
@@ -30,7 +30,7 @@ const formData = new FormData();
 
 formData.append("image",file);
 
-await fetch("http://localhost:5000/api/gallery/upload",{
+await fetch("https://araybhat-1.onrender.com/api/gallery/upload",{
 
 method:"POST",
 
@@ -46,7 +46,7 @@ fetchImages();
 
 const deleteImage = async(id)=>{
 
-await fetch(`http://localhost:5000/api/gallery/delete/${id}`,{
+await fetch(`https://araybhat-1.onrender.com/gallery/delete/${id}`,{
 
 method:"DELETE"
 

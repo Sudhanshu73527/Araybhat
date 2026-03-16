@@ -15,7 +15,7 @@ const [editId,setEditId] = useState(null);
 
 const fetchNotices = async ()=>{
 
-const res = await fetch("http://localhost:5000/api/notices/all");
+const res = await fetch("https://araybhat-1.onrender.com/api/notices/all");
 
 const data = await res.json();
 
@@ -35,7 +35,7 @@ fetchNotices();
 
 const addNotice = async ()=>{
 
-await fetch("http://localhost:5000/api/notices/add",{
+await fetch("https://araybhat-1.onrender.com/api/notices/add",{
 
 method:"POST",
 
@@ -65,7 +65,7 @@ fetchNotices();
 
 const deleteNotice = async(id)=>{
 
-await fetch(`http://localhost:5000/api/notices/delete/${id}`,{
+await fetch(`https://araybhat-1.onrender.com/api/notices/delete/${id}`,{
 
 method:"DELETE"
 
@@ -95,7 +95,7 @@ setDescription(notice.description);
 
 const updateNotice = async ()=>{
 
-await fetch(`http://localhost:5000/api/notices/update/${editId}`,{
+await fetch(`https://araybhat-1.onrender.com/api/notices/update/${editId}`,{
 
 method:"PUT",
 

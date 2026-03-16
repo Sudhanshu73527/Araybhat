@@ -32,7 +32,7 @@ const formData = new FormData();
 formData.append("title",title);
 formData.append("image",file);
 
-await fetch("http://localhost:5000/api/events/upload",{
+await fetch("https://araybhat-1.onrender.com/api/events/upload",{
 
 method:"POST",
 body:formData
@@ -48,7 +48,7 @@ fetchEvents();
 
 const deleteEvent = async(id)=>{
 
-await fetch(`http://localhost:5000/api/events/delete/${id}`,{
+await fetch(`https://araybhat-1.onrender.com/api/events/delete/${id}`,{
 
 method:"DELETE"
 
