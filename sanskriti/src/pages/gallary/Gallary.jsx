@@ -8,7 +8,7 @@ const Gallary = () => {
   // FETCH IMAGES FROM BACKEND
   useEffect(() => {
 
-    fetch("https://araybhat-1.onrender.com//api/gallery/all")
+    fetch("https://araybhat-1.onrender.com/api/gallery/all")
       .then((res) => res.json())
       .then((data) => setImages(data))
       .catch((err) => console.log(err));
@@ -47,13 +47,13 @@ const Gallary = () => {
             <div
               key={img._id}
               onClick={() =>
-                setSelectedImage(`https://araybhat-1.onrender.com//uploads/${img.image}`)
+                setSelectedImage(`https://araybhat-1.onrender.com/uploads/${img.image}`)
               }
               className="cursor-pointer overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition duration-500 group"
             >
 
               <img
-                src={`https://araybhat-1.onrender.com//uploads/${img.image}`}
+                src={`https://araybhat-1.onrender.com/uploads/${img.image}`}
                 alt="School Gallery"
                 className="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
               />

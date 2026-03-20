@@ -6,9 +6,15 @@ const [events,setEvents] = useState([]);
 
 useEffect(()=>{
 
-fetch("https://araybhat-1.onrender.com//api/events/all")
+fetch("https://araybhat-1.onrender.com/api/events/all")
 .then(res=>res.json())
-.then(data=>setEvents(data));
+.then(data=>{
+console.log("Events Data:", data); // debug
+setEvents(data);
+})
+.catch(err=>{
+console.log("Error:",err);
+});
 
 },[]);
 
@@ -19,28 +25,19 @@ return(
 
 <div className="max-w-7xl mx-auto">
 
-{/* Heading */}
-
 <div className="text-center mb-14">
 
 <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-
 School Events <span className="text-yellow-400">& Activities</span>
-
 </h2>
 
 <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-
 Our school regularly organizes educational, cultural, and sports
-events to support the overall development of students. These
-activities help students build confidence, creativity, and teamwork.
-
+events to support the overall development of students.
 </p>
 
 </div>
 
-
-{/* Event Cards */}
 
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
@@ -51,27 +48,20 @@ key={event._id}
 className="group bg-white rounded-3xl shadow-md hover:shadow-2xl transition duration-500 overflow-hidden"
 >
 
-{/* Image */}
-
 <div className="overflow-hidden">
 
 <img
-src={`https://araybhat-1.onrender.com//uploads/${event.image}`}
+src={`https://araybhat-1.onrender.com/uploads/${event.image}`}
 alt={event.title}
 className="h-64 w-full object-cover transform group-hover:scale-110 transition duration-500"
 />
 
 </div>
 
-
-{/* Title */}
-
 <div className="p-5 text-center">
 
 <h3 className="text-lg font-semibold text-gray-700 group-hover:text-yellow-500 transition">
-
 {event.title}
-
 </h3>
 
 </div>
@@ -90,4 +80,4 @@ className="h-64 w-full object-cover transform group-hover:scale-110 transition d
 
 }
 
-export default Schoolevents
+export default Schoolevents;

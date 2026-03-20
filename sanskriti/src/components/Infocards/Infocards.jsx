@@ -14,7 +14,7 @@ const InfoCards = () => {
   // FETCH NOTICES FROM BACKEND
   useEffect(() => {
 
-    fetch("https://araybhat-1.onrender.com//api/notices/all")
+    fetch("https://araybhat-1.onrender.com/api/notices/all")
       .then((res) => res.json())
       .then((data) => setNotices(data))
       .catch((err) => console.log(err));
