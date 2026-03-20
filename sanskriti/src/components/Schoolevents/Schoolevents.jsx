@@ -6,7 +6,7 @@ const [events,setEvents] = useState([]);
 
 useEffect(()=>{
 
-fetch("http://localhost:5000/api/events/all")
+fetch("https://araybhat-1.onrender.com//api/events/all")
 .then(res=>res.json())
 .then(data=>setEvents(data));
 
@@ -56,7 +56,7 @@ className="group bg-white rounded-3xl shadow-md hover:shadow-2xl transition dura
 <div className="overflow-hidden">
 
 <img
-src={`http://localhost:5000/uploads/${event.image}`}
+src={`https://araybhat-1.onrender.com//uploads/${event.image}`}
 alt={event.title}
 className="h-64 w-full object-cover transform group-hover:scale-110 transition duration-500"
 />

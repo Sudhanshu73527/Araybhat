@@ -6,7 +6,7 @@ const [events,setEvents] = useState([]);
 
 useEffect(()=>{
 
-fetch("http://localhost:5000/api/upcoming-events/all")
+fetch("https://araybhat-1.onrender.com//api/upcoming-events/all")
 .then(res=>res.json())
 .then(data=>setEvents(data));
 
@@ -49,7 +49,7 @@ className="group bg-white rounded-3xl overflow-hidden border border-gray-200 sha
 <div className="relative h-60 overflow-hidden">
 
 <img
-src={`http://localhost:5000/uploads/${event.image}`}
+src={`https://araybhat-1.onrender.com//uploads/${event.image}`}
 className="w-full h-full object-cover"
 />
 

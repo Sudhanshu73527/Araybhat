@@ -13,7 +13,7 @@ const AdmissionNotification = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/admission/get");
+        const response = await fetch("https://araybhat-1.onrender.com//api/admission/get");
         if (!response.ok) throw new Error("Failed to fetch admission data");
         const result = await response.json();
 
