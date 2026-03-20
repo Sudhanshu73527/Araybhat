@@ -9,7 +9,7 @@ const [file,setFile] = useState(null);
 
 const fetchEvents = async()=>{
 
-const res = await fetch("http://localhost:5000/api/events/all");
+const res = await fetch("https://araybhat-1.onrender.com/api/events/all");
 
 const data = await res.json();
 
@@ -101,7 +101,7 @@ Upload Event
 <div key={event._id}>
 
 <img
-src={`http://localhost:5000/uploads/${event.image}`}
+src={`https://araybhat-1.onrender.com/uploads/${event.image}`}
 className="w-full h-40 object-cover rounded"
 />
 

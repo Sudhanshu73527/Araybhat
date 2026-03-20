@@ -85,7 +85,7 @@ Upload
 <div key={img._id}>
 
 <img
-src={`http://localhost:5000/uploads/${img.image}`}
+src={`https://araybhat-1.onrender.com/uploads/${img.image}`}
 className="w-full h-40 object-cover"
 />
 

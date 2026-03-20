@@ -124,7 +124,7 @@ Add Event
 <div key={event._id}>
 
 <img
-src={`http://localhost:5000/uploads/${event.image}`}
+src={`https://araybhat-1.onrender.com/uploads/${event.image}`}
 className="w-full h-40 object-cover rounded"
 />
 
