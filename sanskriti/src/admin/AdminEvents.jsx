@@ -1,135 +1,159 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-const AdminEvents = ()=>{
+const AdminEvents = () => {
 
-const [events,setEvents] = useState([]);
-const [title,setTitle] = useState("");
-const [file,setFile] = useState(null);
+  const [events, setEvents] = useState([]);
+  const [title, setTitle] = useState("");
+  const [file, setFile] = useState(null);
 
+  const [preview, setPreview] = useState(null);
+  const [message, setMessage] = useState("");
 
-const fetchEvents = async()=>{
+  // 🔥 Auto hide message
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => setMessage(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
-const res = await fetch("https://araybhat-1.onrender.com/api/events/all");
+  // FETCH
+  const fetchEvents = async () => {
+    const res = await fetch("https://araybhat-1.onrender.com/api/events/all");
+    const data = await res.json();
+    setEvents(data);
+  };
 
-const data = await res.json();
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
-setEvents(data);
+  // UPLOAD
+  const uploadEvent = async () => {
 
+    if (!title || !file) {
+      setMessage("⚠️ Please fill all fields");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("image", file);
+
+    await fetch("https://araybhat-1.onrender.com/api/events/upload", {
+      method: "POST",
+      body: formData
+    });
+
+    setTitle("");
+    setFile(null);
+    setPreview(null);
+
+    setMessage("✅ Event Uploaded Successfully!");
+    fetchEvents();
+  };
+
+  // DELETE
+  const deleteEvent = async (id) => {
+    await fetch(`https://araybhat-1.onrender.com/api/events/delete/${id}`, {
+      method: "DELETE"
+    });
+
+    setMessage("🗑️ Event Deleted Successfully!");
+    fetchEvents();
+  };
+
+  return (
+    <div className="p-4 md:p-8 bg-gray-100 min-h-screen">
+
+      {/* 🔥 Message */}
+      {message && (
+        <div className="mb-4 bg-green-500 text-white px-4 py-3 rounded-xl text-center font-semibold shadow">
+          {message}
+        </div>
+      )}
+
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
+        Event Manager
+      </h1>
+
+      {/* 🔥 FORM */}
+      <div className="bg-white p-4 md:p-6 rounded-2xl shadow-md mb-8 flex flex-col gap-4 md:flex-row md:items-center">
+
+        <input
+          type="text"
+          placeholder="Event Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="border p-3 rounded-xl w-full md:w-auto"
+        />
+
+        <input
+          type="file"
+          className="border p-2 rounded-lg w-full md:w-auto"
+          onChange={(e) => {
+            const selected = e.target.files[0];
+            setFile(selected);
+            if (selected) {
+              setPreview(URL.createObjectURL(selected));
+            }
+          }}
+        />
+
+        <button
+          onClick={uploadEvent}
+          className="bg-green-600 text-white px-6 py-3 rounded-xl w-full md:w-auto"
+        >
+          Upload Event
+        </button>
+
+      </div>
+
+      {/* 🔥 Preview */}
+      {preview && (
+        <div className="mb-6">
+          <p className="text-gray-600 mb-2">Preview:</p>
+          <img
+            src={preview}
+            className="w-40 h-40 object-cover rounded-xl shadow"
+          />
+        </div>
+      )}
+
+      {/* 🔥 EVENTS GRID */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+
+        {events.map((event) => (
+          <div
+            key={event._id}
+            className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+
+            <img
+              src={`https://araybhat-1.onrender.com/uploads/${event.image}`}
+              className="w-full h-32 sm:h-40 object-cover"
+            />
+
+            <div className="p-3">
+              <h3 className="font-semibold text-gray-800 text-sm text-center">
+                {event.title}
+              </h3>
+
+              <button
+                onClick={() => deleteEvent(event._id)}
+                className="bg-red-600 text-white px-3 py-1 rounded-lg w-full mt-3"
+              >
+                Delete
+              </button>
+            </div>
+
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+  );
 };
 
-useEffect(()=>{
-
-fetchEvents();
-
-},[]);
-
-
-
-const uploadEvent = async()=>{
-
-const formData = new FormData();
-
-formData.append("title",title);
-formData.append("image",file);
-
-await fetch("https://araybhat-1.onrender.com/api/events/upload",{
-
-method:"POST",
-body:formData
-
-});
-
-setTitle("");
-fetchEvents();
-
-};
-
-
-
-const deleteEvent = async(id)=>{
-
-await fetch(`https://araybhat-1.onrender.com/api/events/delete/${id}`,{
-
-method:"DELETE"
-
-});
-
-fetchEvents();
-
-};
-
-
-
-return(
-
-<div className="p-10">
-
-<h1 className="text-3xl font-bold mb-6">
-
-Event Manager
-
-</h1>
-
-
-<input
-type="text"
-placeholder="Event Title"
-value={title}
-onChange={(e)=>setTitle(e.target.value)}
-className="border p-2 mr-3"
-/>
-
-<input
-type="file"
-onChange={(e)=>setFile(e.target.files[0])}
-/>
-
-<button
-onClick={uploadEvent}
-className="bg-green-700 text-white px-4 py-2 ml-3"
->
-
-Upload Event
-
-</button>
-
-
-<div className="grid grid-cols-4 gap-6 mt-10">
-
-{events.map((event)=>(
-
-<div key={event._id}>
-
-<img
-src={`https://araybhat-1.onrender.com/uploads/${event.image}`}
-className="w-full h-40 object-cover rounded"
-/>
-
-<h3 className="text-center mt-2 font-semibold">
-
-{event.title}
-
-</h3>
-
-<button
-onClick={()=>deleteEvent(event._id)}
-className="bg-red-600 text-white px-3 py-1 mt-2"
->
-
-Delete
-
-</button>
-
-</div>
-
-))}
-
-</div>
-
-</div>
-
-)
-
-}
-
-export default AdminEvents
+export default AdminEvents;

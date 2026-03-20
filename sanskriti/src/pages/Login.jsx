@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await fetch("https://araybhat-1.onrender.com/api/admin/login", {
@@ -21,61 +26,85 @@ const Login = () => {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        navigate("/admin/dashboard");
+
+        // 👉 Redirect with success message
+        navigate("/admin/dashboard", {
+          state: { message: "✅ Successfully Logged In!" }
+        });
+
       } else {
+        setLoading(false);
         alert(data.message || "Invalid Login");
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
       alert("Server Error");
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-green-200 via-green-100 to-green-300">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-green-100 via-white to-green-200">
+
       <motion.form
         onSubmit={handleLogin}
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
-        className="bg-white p-10 rounded-3xl shadow-2xl w-96 flex flex-col items-center"
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className="backdrop-blur-lg bg-white/70 border p-10 rounded-3xl shadow-2xl w-96 flex flex-col items-center"
       >
-        {/* Admin notice */}
-        <p className="mb-4 text-sm text-red-600 font-semibold text-center animate-pulse">
-          ⚠️ Admin Access Only! Regular users, please do not proceed.
+        <p className="mb-4 text-sm text-red-500 font-semibold text-center">
+          ⚠️ Admin Access Only
         </p>
 
-        <h2 className="text-3xl font-bold mb-6 text-green-800 text-center">
+        <h2 className="text-3xl font-bold mb-6 text-green-800">
           Admin Login
         </h2>
 
-        {/* Email Input */}
-        <motion.input
-          whileFocus={{ scale: 1.02, borderColor: "#22c55e" }}
+        {/* Email */}
+        <input
           type="email"
-          placeholder="Email"
-          className="border-2 border-gray-300 p-3 w-full rounded-xl mb-4 focus:outline-none focus:border-green-500 transition"
+          placeholder="Enter Email"
+          className="border p-3 w-full rounded-xl mb-4 focus:ring-2 focus:ring-green-400"
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        {/* Password Input */}
-        <motion.input
-          whileFocus={{ scale: 1.02, borderColor: "#22c55e" }}
-          type="password"
-          placeholder="Password"
-          className="border-2 border-gray-300 p-3 w-full rounded-xl mb-6 focus:outline-none focus:border-green-500 transition"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        {/* Password */}
+        <div className="relative w-full mb-6">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Enter Password"
+            className="border p-3 w-full rounded-xl pr-12 focus:ring-2 focus:ring-green-400"
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        {/* Login Button */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          <div
+            className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FiEyeOff /> : <FiEye />}
+          </div>
+        </div>
+
+        {/* Button */}
+        <button
           type="submit"
-          className="bg-gradient-to-r from-green-600 to-green-400 text-white font-semibold py-3 w-full rounded-xl shadow-lg hover:shadow-2xl transition-all"
+          disabled={loading}
+          className={`w-full py-3 rounded-xl font-semibold flex justify-center items-center gap-2
+          ${loading
+            ? "bg-yellow-300 cursor-not-allowed"
+            : "bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600"
+          }`}
         >
-          Login
-        </motion.button>
+          {loading ? (
+            <>
+              <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+              Please wait...
+            </>
+          ) : (
+            "Login"
+          )}
+        </button>
+
       </motion.form>
     </div>
   );
