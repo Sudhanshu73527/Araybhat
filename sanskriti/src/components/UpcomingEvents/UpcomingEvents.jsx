@@ -6,7 +6,7 @@ const [events,setEvents] = useState([]);
 
 useEffect(()=>{
 
-fetch("https://araybhat-1.onrender.com//api/upcoming-events/all")
+fetch("https://araybhat-1.onrender.com/api/upcoming-events/all")
 .then(res=>res.json())
 .then(data=>setEvents(data));
 
