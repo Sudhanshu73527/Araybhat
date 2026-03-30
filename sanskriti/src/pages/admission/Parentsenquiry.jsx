@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { FaUser, FaPhone, FaBook, FaPaperPlane } from "react-icons/fa";
+import { FaUser, FaPhone, FaBook } from "react-icons/fa";
+import axios from "axios";
+
+const BASE_URL = "http://localhost:5000";
 
 const Parentsenquiry = () => {
   const [formData, setFormData] = useState({
@@ -9,44 +12,54 @@ const Parentsenquiry = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // ✅ SUBMIT TO BACKEND
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { parentName, mobile, studentClass, message } = formData;
+    try {
+      setLoading(true);
+      setSuccessMsg("");
+      setErrorMsg("");
 
-    const whatsappNumber = "91 99319 79868";
+      await axios.post(
+        `${BASE_URL}/api/enquiry/add`,
+        formData
+      );
 
-    const text = `📌 *New Parent Enquiry*  
+      setSuccessMsg("✅ Enquiry submitted successfully!");
+      
+      // Reset form
+      setFormData({
+        parentName: "",
+        mobile: "",
+        studentClass: "",
+        message: "",
+      });
 
-👨‍👩‍👧 Parent Name: ${parentName}  
-📞 Mobile: ${mobile}  
-🎓 Student Class: ${studentClass}  
-📝 Message: ${message}`;
-
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
-
-    window.open(url, "_blank");
-
-    // Reset Form
-    setFormData({
-      parentName: "",
-      mobile: "",
-      studentClass: "",
-      message: "",
-    });
+    } catch (error) {
+      setErrorMsg("❌ Something went wrong. Try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-blue-100 to-purple-100 p-4">
+      
       <div className="backdrop-blur-lg bg-white/70 shadow-2xl rounded-3xl p-8 w-full max-w-lg border border-white/40">
         
         <h2 className="text-3xl font-bold text-center text-green-700 mb-2">
           Parents Enquiry
         </h2>
+
         <p className="text-center text-gray-600 mb-6">
           Fill the form below and our team will contact you soon.
         </p>
@@ -122,11 +135,25 @@ const Parentsenquiry = () => {
           {/* Button */}
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-green-600 text-white p-3 rounded-xl hover:bg-green-700 transition-all duration-300 shadow-md hover:shadow-lg"
+            disabled={loading}
+            className="w-full flex items-center justify-center gap-2 bg-green-600 text-white p-3 rounded-xl hover:bg-green-700 transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50"
           >
-            {/* <FaPaperPlane /> */}
-            Submit Enquiry 
+            {loading ? "Submitting..." : "Submit Enquiry"}
           </button>
+
+          {/* Success Message */}
+          {successMsg && (
+            <p className="text-green-600 text-center text-sm">
+              {successMsg}
+            </p>
+          )}
+
+          {/* Error Message */}
+          {errorMsg && (
+            <p className="text-red-500 text-center text-sm">
+              {errorMsg}
+            </p>
+          )}
 
         </form>
       </div>

@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import principalImg from "../../assets/shri1.png";
+import axios from "axios";
+
+const BASE_URL = "http://localhost:5000";
 
 const Principal = () => {
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    fetchPrincipal();
+  }, []);
+
+  const fetchPrincipal = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/api/principal`);
+
+      if (res.data.data) {
+        setImage(`${BASE_URL}/uploads/${res.data.data.image}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="relative w-full bg-[#0b1220] py-32 px-4 overflow-hidden">
       
@@ -18,7 +38,7 @@ const Principal = () => {
           className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center"
         >
           
-          {/* CONTENT */}
+          {/* CONTENT (UNCHANGED) */}
           <motion.div
             initial={{ x: -90, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -77,7 +97,7 @@ const Principal = () => {
             </div>
           </motion.div>
 
-          {/* IMAGE */}
+          {/* IMAGE (ONLY THIS PART DYNAMIC) */}
           <motion.div
             initial={{ x: 90, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -90,9 +110,12 @@ const Principal = () => {
               {/* Offset frame */}
               <div className="absolute -top-8 -left-8 w-full h-full border border-emerald-400/40"></div>
 
-              {/* Image */}
+              {/* ✅ Dynamic Image */}
               <img
-                src={principalImg}
+                src={
+                  image ||
+                  "https://via.placeholder.com/400x500?text=Principal"
+                }
                 alt="Principal"
                 className="relative w-[300px] sm:w-[380px] xl:w-[440px] object-cover grayscale hover:grayscale-0 transition duration-700"
               />

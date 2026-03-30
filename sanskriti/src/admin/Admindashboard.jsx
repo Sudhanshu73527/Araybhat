@@ -46,7 +46,8 @@ const AdminDashboard = () => {
     { title: "Event Images", icon: <MdEvent />, link: "/admin-events" },
     { title: "Upcoming Events", icon: <FaCalendarAlt />, link: "/admin-upcoming-events" },
     { title: "Fee Management", icon: <FaMoneyBillWave />, link: "/admin-fee" },
-    { title: "Update Admission", icon: <FaGraduationCap />, link: "/admin/admission" }
+    { title: "Update Admission", icon: <FaGraduationCap />, link: "/admin/admission" },
+    { title: "Update Infrastructure", icon: <FaGraduationCap />, link: "/admin/infra" }
   ];
 
   return (

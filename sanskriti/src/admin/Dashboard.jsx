@@ -19,7 +19,12 @@ const AdminDashboard = () => {
     { title: "Event Images", icon: <MdEvent className="text-3xl text-white" />, link: "/admin-events", description: "Manage event photos" },
     { title: "Upcoming Events", icon: <FaCalendarAlt className="text-3xl text-white" />, link: "/admin-upcoming-events", description: "Add upcoming events" },
     { title: "Fee Management", icon: <FaMoneyBillWave className="text-3xl text-white" />, link: "/admin-fee", description: "Manage student fees" },
-    { title: "Update Admission", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/admission", description: "Update admission notifications" }
+    { title: "Update Admission", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/admission", description: "Update admission notifications" },
+    { title: "Update Infrastructure", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/infra", description: "Update Infrastructure Image" },
+    { title: "Enquiry", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/enq", description: "Check Enquiry" },
+    { title: "Update Principal", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/principal", description: "Check Enquiry" }
+
+
   ];
 
   return (

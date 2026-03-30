@@ -35,6 +35,9 @@ import AdminUpcomingEvents from "../admin/AdminUpcomingEvents";
 import AdminFee from "../admin/Adminfee";
 import AdminAdmission from "../admin/AdminAdmission";
 import Admindashboard from "../admin/Admindashboard";
+import UploadInfra from "../admin/UploadInfra";
+import AdminEnquiry from "../admin/AdminEnquiry";
+import UploadPrincipal from "../admin/UploadPrincipal";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +77,10 @@ const router = createBrowserRouter([
       {path: "/admin-upcoming-events", element: <AdminUpcomingEvents/>},
       {path: "/admin-fee", element: <AdminFee/>},
       {path: "/admin/admission", element: <AdminAdmission/>},
-      {path: "/admin-dashboard", element: <Admindashboard/>}
+      {path: "/admin-dashboard", element: <Admindashboard/>},
+      {path: "/admin/infra", element: <UploadInfra/>},
+      {path: "/admin/enq", element: <AdminEnquiry/>},
+      {path: "/admin/principal", element: <UploadPrincipal/>}
     ],
   },
 ]);

@@ -1,35 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import axios from "axios";
 
-// ===== IMPORT YOUR IMAGES =====
-import img1 from "../../assets/bhat12.png";
-import img2 from "../../assets/bhat11.jpeg";
-import img3 from "../../assets/bhat10.jpeg";
-import img4 from "../../assets/aryy4.png";
-import img5 from "../../assets/aryy1.png";
-import img6 from "../../assets/aryy2.png";
-import img7 from "../../assets/aryy3.png";
-// import img8 from "../../assets/bhat5.jpeg";
-// import img9 from "../../assets/bhat4.jpeg";
-// import img10 from "../../assets/bhat3.jpeg";
-
-const images = [
-  img1, img2, img3, img4, img5,
-  img6, img7
-];
+const BASE_URL = "http://localhost:5000";
 
 const OurInfrastructure = () => {
+  const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const fetchImages = async () => {
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/api/infrastructure/all`
+      );
+
+      console.log("API RESPONSE:", res.data); // 🔍 DEBUG
+
+      // ✅ MAIN FIX
+      setImages(res.data.data || []);
+    } catch (error) {
+      console.log("Error fetching images:", error);
+    }
+  };
 
   return (
     <section className="relative py-24 bg-gradient-to-br from-white via-gray-50 to-gray-100 font-outfit overflow-hidden">
 
-      {/* Soft Background Glow */}
+      {/* Background Glow */}
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-yellow-400/20 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-400/20 blur-3xl rounded-full"></div>
 
-      {/* ===== HEADER ===== */}
+      {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -51,38 +57,51 @@ const OurInfrastructure = () => {
         </p>
       </motion.div>
 
-      {/* ===== IMAGE GRID ===== */}
+      {/* IMAGE GRID */}
       <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         
-        {images.map((img, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.08 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -8 }}
-            className="group relative overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer bg-white"
-            onClick={() => setSelectedImage(img)}
-          >
-            <img
-              src={img}
-              alt={`Infrastructure ${index + 1}`}
-              className="w-full h-72 object-cover transition duration-700 group-hover:scale-110"
-            />
+        {images.length > 0 ? (
+          images.map((img, index) => {
+            const imageUrl = `${BASE_URL}/uploads/${img.image}`;
 
-            {/* Modern Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-5">
-              <div className="backdrop-blur-md bg-white/10 text-white px-4 py-2 rounded-xl text-sm font-medium">
-                View Image
-              </div>
-            </div>
-          </motion.div>
-        ))}
+            return (
+              <motion.div
+                key={img._id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="group relative overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer bg-white"
+                onClick={() => setSelectedImage(imageUrl)}
+              >
+                <img
+                  src={imageUrl}
+                  alt="Infrastructure"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://via.placeholder.com/300x200?text=Image+Not+Found";
+                  }}
+                  className="w-full h-72 object-cover transition duration-700 group-hover:scale-110"
+                />
 
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-5">
+                  <div className="backdrop-blur-md bg-white/10 text-white px-4 py-2 rounded-xl text-sm font-medium">
+                    View Image
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })
+        ) : (
+          <p className="col-span-full text-center text-gray-500">
+            No Images Found
+          </p>
+        )}
       </div>
 
-      {/* ===== LIGHTBOX ===== */}
+      {/* LIGHTBOX */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -106,7 +125,6 @@ const OurInfrastructure = () => {
                 className="w-full max-h-[85vh] object-contain rounded-3xl shadow-2xl"
               />
 
-              {/* Close Button */}
               <button
                 onClick={() => setSelectedImage(null)}
                 className="absolute -top-5 -right-5 bg-white text-black p-3 rounded-full shadow-lg hover:scale-110 transition"
