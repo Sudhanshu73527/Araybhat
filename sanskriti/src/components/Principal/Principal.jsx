@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://araybhat-1.onrender.com/";
 
 const Principal = () => {
   const [image, setImage] = useState("");

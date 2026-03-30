@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://araybhat-1.onrender.com/";
 
 const OurInfrastructure = () => {
   const [images, setImages] = useState([]);

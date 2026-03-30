@@ -6,7 +6,7 @@ const AdminEnquiry = () => {
 
   const fetchData = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/enquiry/all"
+      "https://araybhat-1.onrender.com/api/enquiry/all"
     );
     setData(res.data.data);
   };
@@ -18,7 +18,7 @@ const AdminEnquiry = () => {
   // UPDATE STATUS
   const handleStatus = async (id, status) => {
     await axios.put(
-      `http://localhost:5000/api/enquiry/status/${id}`,
+      `https://araybhat-1.onrender.com/api/enquiry/status/${id}`,
       { status }
     );
     fetchData();
@@ -27,7 +27,7 @@ const AdminEnquiry = () => {
   // DELETE
   const handleDelete = async (id) => {
     await axios.delete(
-      `http://localhost:5000/api/enquiry/delete/${id}`
+      `https://araybhat-1.onrender.com/api/enquiry/delete/${id}`
     );
     fetchData();
   };

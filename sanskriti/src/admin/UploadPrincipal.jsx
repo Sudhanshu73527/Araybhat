@@ -31,7 +31,7 @@ const UploadPrincipal = () => {
       formData.append("image", image);
 
       await axios.post(
-        "http://localhost:5000/api/principal/update",
+        "https://araybhat-1.onrender.com/api/principal/update",
         formData
       );
 
