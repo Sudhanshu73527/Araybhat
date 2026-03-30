@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaUser, FaPhone, FaBook } from "react-icons/fa";
 import axios from "axios";
 
-const BASE_URL = "https://araybhat-1.onrender.com/";
+const BASE_URL = "https://araybhat-1.onrender.com";
 
 const Parentsenquiry = () => {
   const [formData, setFormData] = useState({

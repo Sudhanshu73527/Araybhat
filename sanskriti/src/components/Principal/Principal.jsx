@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-const BASE_URL = "https://araybhat-1.onrender.com/";
+const BASE_URL = "https://araybhat-1.onrender.com";
 
 const Principal = () => {
   const [image, setImage] = useState("");
@@ -114,7 +114,7 @@ const Principal = () => {
               <img
                 src={
                   image ||
-                  "https://araybhat-1.onrender.com//400x500?text=Principal"
+                  "https://araybhat-1.onrender.com/400x500?text=Principal"
                 }
                 alt="Principal"
                 className="relative w-[300px] sm:w-[380px] xl:w-[440px] object-cover grayscale hover:grayscale-0 transition duration-700"

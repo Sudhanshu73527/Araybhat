@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
-const BASE_URL = "https://araybhat-1.onrender.com/";
+const BASE_URL = "https://araybhat-1.onrender.com";
 
 const UploadInfra = () => {
   const [image, setImage] = useState(null);
