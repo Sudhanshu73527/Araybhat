@@ -114,7 +114,7 @@ const Principal = () => {
               <img
                 src={
                   image ||
-                  "https://via.placeholder.com/400x500?text=Principal"
+                  "https://araybhat-1.onrender.com//400x500?text=Principal"
                 }
                 alt="Principal"
                 className="relative w-[300px] sm:w-[380px] xl:w-[440px] object-cover grayscale hover:grayscale-0 transition duration-700"

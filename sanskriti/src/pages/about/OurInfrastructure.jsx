@@ -80,7 +80,7 @@ const OurInfrastructure = () => {
                   alt="Infrastructure"
                   onError={(e) => {
                     e.target.src =
-                      "https://via.placeholder.com/300x200?text=Image+Not+Found";
+                      "https://araybhat-1.onrender.com/300x200?text=Image+Not+Found";
                   }}
                   className="w-full h-72 object-cover transition duration-700 group-hover:scale-110"
                 />
