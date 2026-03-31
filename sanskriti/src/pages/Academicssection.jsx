@@ -10,84 +10,119 @@ import {
 const Academicssection = () => {
   const sections = [
     {
-      title: "Pre-Primary Section",
+      title: "Pre-Primary",
+      class: "Nursery - UKG",
       icon: <FaChild />,
       description:
-        "Our Pre-Primary section focuses on early childhood development through play-based learning, interactive activities and creative exploration. The aim is to build a strong foundation for young learners while developing curiosity, confidence and social skills.",
+        "A nurturing environment focused on play-based learning, creativity, and early skill development.",
     },
     {
-      title: "Primary Section (Class I – V)",
+      title: "Primary",
+      class: "Class I - V",
       icon: <FaBookOpen />,
       description:
-        "The Primary section provides structured academic learning where students develop strong fundamentals in subjects such as language, mathematics and environmental studies. Modern teaching methods and activity-based learning help students understand concepts effectively.",
+        "Strong academic foundation with focus on basic concepts, reading, writing and interactive learning.",
     },
     {
-      title: "Upper Primary Section (Class VI – VIII)",
+      title: "Middle School",
+      class: "Class VI - VIII",
       icon: <FaSchool />,
       description:
-        "In the Upper Primary level, students are introduced to advanced subject knowledge and analytical thinking. The curriculum encourages conceptual understanding, discipline and active participation in both academic and co-curricular activities.",
+        "Conceptual clarity, subject depth and development of analytical thinking with co-curricular balance.",
     },
     {
-      title: "Secondary Section (Class IX – X)",
+      title: "Secondary",
+      class: "Class IX - X",
       icon: <FaUserGraduate />,
       description:
-        "The Secondary section prepares students for higher education and future academic challenges. The school provides a focused learning environment, experienced teachers and a structured curriculum that helps students perform well in board examinations and build a strong academic future.",
+        "Focused preparation for board exams with structured curriculum, guidance and performance tracking.",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-14 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
 
         {/* Header */}
-        <div className="text-center mb-14">
-          <h1 className="text-4xl font-bold text-gray-800">
-            Academic Structure
-          </h1>
-
-          <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
-            Our school provides quality education from Pre-Primary to
-            Secondary level with a focus on academic excellence, character
-            development and holistic growth of every student.
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold text-gray-900">
+            Academic Journey
+          </h2>
+          <p className="text-gray-500 mt-6 max-w-2xl mx-auto text-lg">
+            A structured learning path from early education to Class 10, designed
+            to build strong academic foundations and future readiness.
           </p>
         </div>
 
-        {/* Academic Sections */}
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* Timeline Layout */}
+        <div className="relative">
 
-          {sections.map((item, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -5 }}
-              className="bg-white shadow-lg rounded-2xl p-8 border-l-4 border-blue-600"
-            >
-              <div className="flex items-center gap-3 text-blue-600 text-xl font-semibold mb-4">
-                {item.icon}
-                {item.title}
-              </div>
+          {/* vertical line */}
+          <div className="hidden md:block absolute left-1/2 top-0 w-[2px] h-full bg-gray-200 transform -translate-x-1/2" />
 
-              <p className="text-gray-600 leading-relaxed text-sm">
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
+          <div className="space-y-16">
+            {sections.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className={`flex flex-col md:flex-row items-center gap-8 ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
+              >
+
+                {/* Card */}
+                <div className="w-full md:w-1/2">
+                  <div className="bg-white border rounded-2xl p-8 shadow-md hover:shadow-xl transition">
+
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-900 text-white text-xl">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-gray-500">
+                          {item.class}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Dot */}
+                <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white z-10 shadow">
+                  {index + 1}
+                </div>
+
+                {/* Empty space */}
+                <div className="hidden md:block w-1/2" />
+
+              </motion.div>
+            ))}
+          </div>
 
         </div>
 
-        {/* Closing Description */}
-        <div className="mt-12 bg-white shadow-lg rounded-2xl p-8">
-          <p className="text-gray-600 leading-relaxed">
-            Our institution is committed to providing a progressive learning
-            environment where students receive quality education along with
-            moral values, discipline and personality development. Through
-            modern teaching methods, dedicated teachers and supportive
-            infrastructure, the school ensures that every student grows
-            academically and personally while preparing for future challenges.
+        {/* Bottom Section */}
+        <div className="mt-24 text-center">
+          <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Our academic system is carefully designed to ensure students receive
+            quality education, discipline and overall personality development at
+            every stage. We prepare students not only for examinations but for
+            life ahead.
           </p>
         </div>
 
       </div>
-    </div>
+    </section>
   );
 };
 
