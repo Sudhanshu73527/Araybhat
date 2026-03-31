@@ -38,6 +38,7 @@ import Admindashboard from "../admin/Admindashboard";
 import UploadInfra from "../admin/UploadInfra";
 import AdminEnquiry from "../admin/AdminEnquiry";
 import UploadPrincipal from "../admin/UploadPrincipal";
+import UploadChairman from "../admin/UploadChairman";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +81,8 @@ const router = createBrowserRouter([
       {path: "/admin-dashboard", element: <Admindashboard/>},
       {path: "/admin/infra", element: <UploadInfra/>},
       {path: "/admin/enq", element: <AdminEnquiry/>},
-      {path: "/admin/principal", element: <UploadPrincipal/>}
+      {path: "/admin/principal", element: <UploadPrincipal/>},
+      {path: "/admin/chairmen", element: <UploadChairman/>}
     ],
   },
 ]);

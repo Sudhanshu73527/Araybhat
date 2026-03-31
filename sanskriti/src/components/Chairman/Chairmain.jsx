@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import chairmanImg from "../../assets/pathak.jpeg";
+import axios from "axios";
 
-const Chairman = () => {
+const BASE_URL = "https://araybhat-1.onrender.com";
+
+const Chairmain = () => {
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    fetchChairman();
+  }, []);
+
+  const fetchChairman = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/api/chairman`);
+
+      if (res.data.data) {
+        setImage(`${BASE_URL}/uploads/${res.data.data.image}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="relative w-full bg-[#0b1220] py-32 px-4 overflow-hidden">
 
@@ -20,7 +40,7 @@ const Chairman = () => {
           className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center"
         >
 
-          {/* IMAGE SIDE */}
+          {/* IMAGE SIDE (ONLY THIS DYNAMIC) */}
           <motion.div
             initial={{ x: -80, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -33,20 +53,24 @@ const Chairman = () => {
               {/* Gold frame */}
               <div className="absolute -bottom-6 -right-6 w-full h-full border border-amber-400/40"></div>
 
+              {/* ✅ Dynamic Image */}
               <img
-                src={chairmanImg}
+                src={
+                  image ||
+                  "/no-image.png"
+                }
                 alt="Chairman"
                 className="relative w-[300px] sm:w-[380px] xl:w-[440px] object-cover grayscale hover:grayscale-0 transition duration-700"
               />
 
               {/* Tag */}
               <div className="absolute -top-6 left-0 bg-amber-400 text-[#0b1220] text-xs tracking-widest px-5 py-2 uppercase font-semibold">
-                Founder & Chairperson 
+                Founder & Chairperson
               </div>
             </div>
           </motion.div>
 
-          {/* CONTENT SIDE */}
+          {/* CONTENT SIDE (UNCHANGED ORIGINAL) */}
           <motion.div
             initial={{ x: 80, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -101,7 +125,7 @@ const Chairman = () => {
                   Lt Col Mr. SK. Pathak
                 </p>
                 <p className="text-xs uppercase tracking-widest text-gray-400">
-                  Founder & Chairperson 
+                  Founder & Chairperson
                 </p>
               </div>
 
@@ -110,7 +134,7 @@ const Chairman = () => {
 
         </motion.div>
 
-        {/* LEGACY STRIP */}
+        {/* LEGACY STRIP (UNCHANGED) */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -140,4 +164,4 @@ const Chairman = () => {
   );
 };
 
-export default Chairman;
+export default Chairmain;

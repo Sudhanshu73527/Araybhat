@@ -22,7 +22,8 @@ const AdminDashboard = () => {
     { title: "Update Admission", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/admission", description: "Update admission notifications" },
     { title: "Update Infrastructure", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/infra", description: "Update Infrastructure Image" },
     { title: "Enquiry", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/enq", description: "Check Enquiry" },
-    { title: "Update Principal", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/principal", description: "Check Enquiry" }
+    { title: "Update Principal", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/principal", description: "Update Principal" },
+    { title: "Update Chairmen", icon: <FaGraduationCap className="text-3xl text-white" />, link: "/admin/chairmen", description: "Update Chairmen" }
 
 
   ];
