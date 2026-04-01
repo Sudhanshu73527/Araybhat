@@ -12,8 +12,7 @@ import feeRoutes from "./routes/feeRoutes.js";
 import admissionRoutes from "./routes/admissionRoutes.js";
 import infrastructureRoutes from "./routes/infrastructureRoutes.js";
 import enquiryRoutes from "./routes/enquiryRoutes.js";
-import principalRoutes from "./routes/principalRoutes.js";
-import chairmanRoutes from "./routes/chairmanRoutes.js";
+import schoolMomentRoutes from "./routes/schoolMomentRoutes.js";
 
 
 dotenv.config();
@@ -41,9 +40,9 @@ app.use("/api/admission",admissionRoutes);
 app.use("/uploads", express.static("uploads"))
 app.use("/api/infrastructure", infrastructureRoutes);
 app.use("/api/enquiry", enquiryRoutes);
-app.use("/api/principal", principalRoutes);
-app.use("/api/chairman", chairmanRoutes);
+app.use("/api/moments", schoolMomentRoutes);
 app.use("/uploads", express.static("uploads"));
+
 
 app.get("/", (req, res) => {
   res.send("Backend Running 🚀");

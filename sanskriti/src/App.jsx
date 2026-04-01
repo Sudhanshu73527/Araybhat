@@ -16,6 +16,7 @@ import AimSection from './components/AimSection/AimSection'
 import RCISSection from './components/RCISSection/RCISSection'
 import SchoolHighlight from './components/SchoolHighlight/SchoolHighlight'
 import Schoolevents from './components/Schoolevents/Schoolevents'
+import Schoolmoments from './components/Schoolmoments/Schoolmoments'
 
 
 const App = () => {
@@ -29,8 +30,9 @@ const App = () => {
       <Principal/>
       <Chairmain/>
       <Schoolevents/>
-      <WhatWeProvide/>
+      <Schoolmoments/>
       <UpcomingEvents/>
+      <WhatWeProvide/>
       <AimSection/>
       {/* <SchoolSections/> */}
       <Ourfacilities/>

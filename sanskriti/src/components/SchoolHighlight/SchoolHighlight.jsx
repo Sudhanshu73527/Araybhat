@@ -17,7 +17,7 @@ const SchoolHighlight = () => {
 
           {/* Heading */}
           <h2 className="text-2xl md:text-3xl font-extrabold text-yellow-600 tracking-wide">
-            Araybhat international public school
+            Aryabhatta National Public School
             <span className="block text-yellow-600 mt-1">
               Best CBSE School in Semra, Ramnagar
             </span>

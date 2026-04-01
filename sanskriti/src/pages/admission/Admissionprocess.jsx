@@ -9,7 +9,24 @@ const steps = [
   },
   {
     title: "Document Submission",
-    desc: "Submit required documents including Birth Certificate, Student Aadhaar Card, Parents' Aadhaar & PAN Card, Passport Size Photos, Address Proof, and Previous School Records (if applicable)."
+    desc: (
+      <ul className="list-disc pl-5 space-y-2 text-gray-300">
+        <li>
+          School Leaving/Transfer Certificate and previous year's Report Card (mandatory for Class II onwards).
+        </li>
+        <li>Medical Certificate in the prescribed format.</li>
+        <li>
+          Birth Certificate (original to be brought for verification only).
+        </li>
+        <li>
+          Recent passport size colour photographs of the candidate and both parents.
+        </li>
+        <li>
+          Admission will be cancelled if any mismatch is found between the Registration Form and submitted documents.
+        </li>
+        <li>Copy of Aadhaar Card of the candidate.</li>
+      </ul>
+    )
   },
   {
     title: "Verification",
@@ -62,9 +79,15 @@ const Admissionprocess = () => {
                 <h3 className="text-2xl font-semibold mb-3">
                   Step {index + 1}: {step.title}
                 </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  {step.desc}
-                </p>
+
+                {/* Handle both string & JSX */}
+                {typeof step.desc === "string" ? (
+                  <p className="text-gray-300 leading-relaxed">
+                    {step.desc}
+                  </p>
+                ) : (
+                  step.desc
+                )}
               </div>
             </div>
 

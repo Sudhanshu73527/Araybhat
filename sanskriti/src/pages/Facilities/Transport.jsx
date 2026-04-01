@@ -70,6 +70,9 @@ commence.
           Our transport network connects the school with multiple nearby towns
           and villages so that students from different areas can access quality
           education conveniently.
+          <br /> <br />
+          Transportation charges according to distance from school to pick up & drop point and to be decided by the Transport
+Management.
         </p>
       </div>
 

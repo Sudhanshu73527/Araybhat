@@ -21,6 +21,7 @@ const Navbar = () => {
       name: "ABOUT US",
       subItems: [
         { label: "About School", path: "/about-school" },
+        { label: "Our Philosophy", path: "OurPhilosophy"},
         { label: "Vision&Mission", path: "/visionmission" },
         { label: "Our Infrastructure", path: "/Infrastructure" },
         { label: "Our Faculty", path: "/teacher" },
@@ -127,7 +128,8 @@ const Navbar = () => {
               Aryabhatta National Public School
             </h1>
             <h2 className="text-xl font-bold text-purple-800">
-              Ramnagar, BIHAR-845106
+              Inspire to Dream Learn to Lead with Excellence
+
             </h2>
           </div>
 

@@ -46,13 +46,13 @@ const RCISSection = () => {
         {/* LEFT CONTENT */}
         <div className="text-center lg:text-left">
           <h2 className="text-3xl lg:text-4xl font-extrabold text-[#1B1464] leading-snug mb-5">
-            Araybhat National <br />
+            Aryabhatta National <br />  
             Public School <br />
             <span className="text-[#2563EB]">Semra Ramnagar</span>
           </h2>
 
           <p className="text-gray-600 text-sm lg:text-base leading-relaxed mb-7 max-w-xl mx-auto lg:mx-0">
-            Araybhat National Public School boasts state-of-the-art infrastructure
+            Aryabhatta National Public School boasts state-of-the-art infrastructure
             essential for delivering quality education. The school emphasizes moral
             values, discipline, and human ethics, focusing on comprehensive
             personality development alongside a strong academic curriculum.
