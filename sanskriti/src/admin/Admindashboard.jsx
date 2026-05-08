@@ -7,9 +7,10 @@ import {
   FaMoneyBillWave,
   FaUsers,
   FaChalkboardTeacher,
-  FaGraduationCap
+  FaGraduationCap,
 } from "react-icons/fa";
 import { MdEvent } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const AdminDashboard = () => {
 
@@ -17,116 +18,122 @@ const AdminDashboard = () => {
     {
       title: "Total Students",
       value: "520",
-      gradient: "from-green-500 to-green-400",
-      icon: <FaUsers size={26} />
+      color: "bg-green-50 text-green-600",
+      icon: <FaUsers size={22} />,
     },
     {
       title: "Total Teachers",
       value: "35",
-      gradient: "from-blue-500 to-blue-400",
-      icon: <FaChalkboardTeacher size={26} />
+      color: "bg-blue-50 text-blue-600",
+      icon: <FaChalkboardTeacher size={22} />,
     },
     {
       title: "Pending Fees",
       value: "₹1,25,000",
-      gradient: "from-orange-500 to-yellow-400",
-      icon: <FaMoneyBillWave size={26} />
+      color: "bg-orange-50 text-orange-600",
+      icon: <FaMoneyBillWave size={22} />,
     },
     {
       title: "Upcoming Events",
       value: "12",
-      gradient: "from-purple-600 to-pink-500",
-      icon: <FaCalendarAlt size={26} />
-    }
+      color: "bg-purple-50 text-purple-600",
+      icon: <FaCalendarAlt size={22} />,
+    },
   ];
 
   const dashboardCards = [
-    { title: "Manage Notices", icon: <FaBell />, link: "/admin-notices" },
-    { title: "Gallery", icon: <FaImages />, link: "/admin-gallery" },
-    { title: "Event Images", icon: <MdEvent />, link: "/admin-events" },
-    { title: "Upcoming Events", icon: <FaCalendarAlt />, link: "/admin-upcoming-events" },
-    { title: "Fee Management", icon: <FaMoneyBillWave />, link: "/admin-fee" },
-    { title: "Update Admission", icon: <FaGraduationCap />, link: "/admin/admission" },
-    { title: "Update Infrastructure", icon: <FaGraduationCap />, link: "/admin/infra" }
+    { title: "Manage Notices", icon: <FaBell />, link: "/admin-notices", color: "bg-red-50 text-red-500" },
+    { title: "Gallery", icon: <FaImages />, link: "/admin-gallery", color: "bg-yellow-50 text-yellow-600" },
+    { title: "Event Images", icon: <MdEvent />, link: "/admin-events", color: "bg-purple-50 text-purple-600" },
+    { title: "Upcoming Events", icon: <FaCalendarAlt />, link: "/admin-upcoming-events", color: "bg-green-50 text-green-600" },
+    { title: "Fee Management", icon: <FaMoneyBillWave />, link: "/admin-fee", color: "bg-blue-50 text-blue-600" },
+    { title: "Update Admission", icon: <FaGraduationCap />, link: "/admin/admission", color: "bg-indigo-50 text-indigo-600" },
+    { title: "Infrastructure", icon: <FaGraduationCap />, link: "/admin/infra", color: "bg-gray-100 text-gray-700" },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 p-6">
+    <div className="min-h-screen bg-gray-50 p-6 md:p-8">
 
-      {/* 🔥 Header */}
+      {/* 🔷 Header */}
       <div className="mb-10 flex flex-col md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">
-            Welcome Back, Admin
+          <h1 className="text-3xl font-semibold text-gray-800">
+            Dashboard
           </h1>
-          <p className="text-gray-500">
-            Here's what's happening in your school today
+          <p className="text-gray-500 mt-1 text-sm">
+            Monitor and manage your school activities
           </p>
         </div>
 
-        {/* Small Badge */}
-        <div className="mt-4 md:mt-0 bg-green-100 text-green-700 px-4 py-2 rounded-xl text-sm font-medium shadow-sm">
+        <div className="mt-4 md:mt-0 bg-green-50 text-green-600 px-4 py-2 rounded-lg text-sm font-medium border border-green-100">
           ● System Active
         </div>
       </div>
 
-      {/* 🔥 Top Stats (Premium Gradient Cards) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {/* 🔷 Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
         {topStats.map((item, index) => (
-          <div
+          <motion.div
+            whileHover={{ y: -4 }}
             key={index}
-            className={`bg-gradient-to-r ${item.gradient} text-white p-6 rounded-3xl shadow-xl flex justify-between items-center relative overflow-hidden`}
+            className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition"
           >
-            {/* Glow Effect */}
-            <div className="absolute w-32 h-32 bg-white/10 rounded-full -top-10 -right-10"></div>
+            <div className="flex items-center justify-between">
 
-            <div>
-              <p className="text-sm opacity-80">{item.title}</p>
-              <h2 className="text-2xl font-bold mt-1">{item.value}</h2>
+              <div>
+                <p className="text-sm text-gray-500">{item.title}</p>
+                <h2 className="text-2xl font-semibold text-gray-800 mt-1">
+                  {item.value}
+                </h2>
+              </div>
+
+              <div className={`p-3 rounded-lg ${item.color}`}>
+                {item.icon}
+              </div>
+
             </div>
-
-            <div className="text-white/80">{item.icon}</div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      {/* 🔥 Section Title */}
+      {/* 🔷 Section Header */}
       <div className="mb-5 flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-gray-700">
+        <h2 className="text-lg font-semibold text-gray-700">
           Quick Actions
         </h2>
-        <span className="text-sm text-gray-400">Manage everything easily</span>
+        <span className="text-sm text-gray-400">
+          Access important features
+        </span>
       </div>
 
-      {/* 🔥 Modern Action Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* 🔷 Action Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {dashboardCards.map((card, index) => (
           <Link to={card.link} key={index}>
-            <div className="bg-white/70 backdrop-blur-lg border border-white/40 p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
+            <motion.div
+              whileHover={{ y: -6, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-lg transition cursor-pointer"
+            >
+              <div className="flex items-start gap-4">
 
-              {/* Hover Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-green-50 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-
-              <div className="relative flex items-center gap-4">
-                
                 {/* Icon */}
-                <div className="p-4 rounded-xl bg-gray-100 text-gray-700 group-hover:bg-green-500 group-hover:text-white transition">
+                <div className={`p-3 rounded-lg ${card.color}`}>
                   {card.icon}
                 </div>
 
-                {/* Text */}
+                {/* Content */}
                 <div>
-                  <h3 className="font-semibold text-gray-800 group-hover:text-green-700">
+                  <h3 className="font-semibold text-gray-800">
                     {card.title}
                   </h3>
-                  <p className="text-sm text-gray-500">
-                    Manage {card.title.toLowerCase()}
+                  <p className="text-sm text-gray-500 mt-1">
+                    Manage and update {card.title.toLowerCase()}
                   </p>
                 </div>
 
               </div>
-
-            </div>
+            </motion.div>
           </Link>
         ))}
       </div>

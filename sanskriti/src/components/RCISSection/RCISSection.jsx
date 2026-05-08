@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const cards = [
   {
     title: "Best Teachers",
-    desc: "At RCIS, students learn from experienced, passionate, and highly qualified educators.",
+    desc: "At Aryabhatta National Public, students learn from experienced, passionate, and highly qualified educators.",
     icon: <FaChalkboardTeacher />,
     bg: "from-[#FFD54F] to-[#FFC107]",
     tag: "Expert Faculty"
@@ -48,14 +48,11 @@ const RCISSection = () => {
           <h2 className="text-3xl lg:text-4xl font-extrabold text-[#1B1464] leading-snug mb-5">
             Aryabhatta National <br />  
             Public School <br />
-            <span className="text-[#2563EB]">Semra Ramnagar</span>
+            <span className="text-[#2563EB]">Semara Ramnagar</span>
           </h2>
 
           <p className="text-gray-600 text-sm lg:text-base leading-relaxed mb-7 max-w-xl mx-auto lg:mx-0">
-            Aryabhatta National Public School boasts state-of-the-art infrastructure
-            essential for delivering quality education. The school emphasizes moral
-            values, discipline, and human ethics, focusing on comprehensive
-            personality development alongside a strong academic curriculum.
+            Aryabhatta National Public School provides state-of-the-art infrastructure designed to support high-quality education and holistic student development. The school strongly emphasizes moral values, discipline, and human ethics while nurturing students’ overall personality growth alongside academic excellence.
           </p>
 
 <Link to={"/about-school"}>

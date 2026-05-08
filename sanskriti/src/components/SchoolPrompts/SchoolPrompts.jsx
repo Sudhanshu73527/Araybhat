@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import img1 from "../../assets/san3.jpg"; // Replace with actual images
-import img2 from "../../assets/san1.jpg";
+import img2 from "../../assets/san3.jpg";
 import img3 from "../../assets/san2.jpg";
 import img4 from "../../assets/san4.jpg"
 const schoolPrompts = [

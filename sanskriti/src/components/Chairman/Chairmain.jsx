@@ -55,7 +55,7 @@ const Chairman = () => {
             {" "}
             <span className="block text-[11px] tracking-[0.45em] uppercase text-amber-400 mb-8">
               {" "}
-              Message from the Foundar and Chairperson{" "}
+              Message from the Founder and Chairperson{" "}
             </span>{" "}
             <h2 className="text-4xl sm:text-5xl xl:text-[56px] font-medium leading-[1.15] mb-10">
               {" "}
@@ -64,42 +64,45 @@ const Chairman = () => {
             <div className="w-28 h-[1.5px] bg-amber-400 mb-10 opacity-80" />{" "}
             <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-7 max-w-2xl">
               {" "}
-              Education is the most powerful investment we can make for the
-              future. As Chairman, my vision has always been to build an
-              institution that stands for integrity, excellence, and progressive
-              thinking.{" "}
+              The core purpose of education is to provide children with a
+              learning environment which brings out the best in them. I strongly
+              felt the need for a customization in our school system and
+              reorienting it to Indian culture and traditions. The Aryabhatta
+              National Public School (ANPS), ‘the Galaxy of Knowledge’ is the
+              result of my new concept with unique experiment which has already
+              started bearing fruits.{" "}
             </p>{" "}
             <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-7 max-w-2xl">
               {" "}
-              Our school is founded on the belief that students must be prepared
-              not only for academic success, but also for leadership,
-              responsibility, and meaningful contribution to society.{" "}
+              Now, when I look back in time and observe what changes we have
+              been able to bring in the society through our concept of school
+              system, it fills me with immense pride and honour. This success
+              would not have come true with purely wholehearted and consistent
+              efforts by our students, faculty and parents.{" "}
             </p>{" "}
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-12 max-w-2xl">
+            {/* <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-12 max-w-2xl">
               {" "}
-              With strong values, dedicated educators, and a clear vision, we
-              continue to shape generations who will define the future with
-              confidence and character.{" "}
-            </p>{" "}
+             {" "}
+            </p>{" "} */}
             {/* SIGNATURE + CTA */}{" "}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-12">
               {" "}
               <Link to={"/fullvision"}>
-              <motion.button
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.96 }}
-                className="relative px-10 py-3 text-xs font-semibold tracking-[0.18em] uppercase text-[#0b1220] bg-amber-400 overflow-hidden group"
-              >
-                {" "}
-                <span className="relative z-10">Read Full Vision</span>{" "}
-                <span className="absolute inset-0 bg-amber-300 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>{" "}
-              </motion.button>
+                <motion.button
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="relative px-10 py-3 text-xs font-semibold tracking-[0.18em] uppercase text-[#0b1220] bg-amber-400 overflow-hidden group"
+                >
+                  {" "}
+                  <span className="relative z-10">Read Full Vision</span>{" "}
+                  <span className="absolute inset-0 bg-amber-300 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>{" "}
+                </motion.button>
               </Link>{" "}
               <div className="border-l border-amber-400/40 pl-6">
                 {" "}
                 <p className="text-lg font-semibold text-white">
                   {" "}
-                  Lt Col Mr. SK. Pathak{" "}
+                  Lt Col. S.K. Pathak{" "}
                 </p>{" "}
                 <p className="text-xs uppercase tracking-widest text-gray-400">
                   {" "}
@@ -121,7 +124,7 @@ const Chairman = () => {
           {[
             { value: "20+", label: "Years of Leadership" },
             { value: "5000+", label: "Students Guided" },
-            { value: "150+", label: "Educators" },
+            { value: "30+", label: "Educators" },
             { value: "100%", label: "Commitment" },
           ].map((item, i) => (
             <div key={i} className="text-center">

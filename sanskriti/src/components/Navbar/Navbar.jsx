@@ -12,18 +12,18 @@ import { Link, Links } from "react-router-dom";
 import { label, path } from "framer-motion/client";
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [openSubmenu, setOpenSubmenu] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false); 
+  const [openSubmenu, setOpenSubmenu] = useState(null); 
 
   const navItems = [
     { name: "HOME", path: "/" },
     {
       name: "ABOUT US",
       subItems: [
-        { label: "About School", path: "/about-school" },
-        { label: "Our Philosophy", path: "OurPhilosophy"},
-        { label: "Vision&Mission", path: "/visionmission" },
-        { label: "Our Infrastructure", path: "/Infrastructure" },
+        { label: "About School", path: "/about-school" },    
+        { label: "Our Philosophy", path: "OurPhilosophy"},     
+        { label: "Vision&Mission", path: "/visionmission" },    
+        { label: "Our Infrastructure", path: "/Infrastructure" },      
         { label: "Our Faculty", path: "/teacher" },
         { label: "RTE", path: "/rte" },
       ],
@@ -67,6 +67,14 @@ const Navbar = () => {
         { label: "CBSE Info", path: "/mandatory/cbse-info" },
         { label: "Fee Structure", path: "/mandatory/fee" },
         { label: "Student Details", path: "/mandatory/student"}
+
+      ],
+    },
+    {
+      name: "CONTACT US",
+      subItems: [
+        { label: "Contact Us", path: "/contact-us" },
+        { label: "Apply Position", path: "/postion" },
 
       ],
     },
@@ -128,7 +136,7 @@ const Navbar = () => {
               Aryabhatta National Public School
             </h1>
             <h2 className="text-xl font-bold text-purple-800">
-              Inspire to Dream Learn to Lead with Excellence
+              Inspire to Dream... Learn to Lead with Excellence
 
             </h2>
           </div>
@@ -137,10 +145,10 @@ const Navbar = () => {
             className="lg:hidden text-green-800 text-2xl"
             onClick={() => setMenuOpen(true)}
           >
-            <FaBars />
-          </button>
-        </div>
-      </div>
+            <FaBars />    
+          </button>    
+        </div>   
+      </div>  
 
       {/* Desktop Navbar */}
       <nav className="bg-gradient-to-r from-green-800 via-green-700 to-green-900 hidden lg:block">

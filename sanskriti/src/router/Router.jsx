@@ -40,6 +40,14 @@ import AdminEnquiry from "../admin/AdminEnquiry";
 import Chairmenfullmessage from "../pages/Chairmenfullmessage";
 import OurPhilosophy from "../pages/about/OurPhilosophy";
 import UploadMoments from "../admin/UploadMoments";
+import StudentList from "../admin/pages/StudentList";
+import StudentDetails from "../admin/pages/StudentDetails";
+import AddStudent from "../admin/pages/AddStudent";
+import AdminTeacher from "../admin/pages/AdminTeacher";
+import Payment from "../pages/Payment";
+import Paymentdetails from "../pages/Paymentdetails";
+import Contactus from "../pages/Contactus";
+import Applyposition from "../pages/Applyposition";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +93,14 @@ const router = createBrowserRouter([
       {path: "/fullvision", element: <Chairmenfullmessage/>},
       {path: "OurPhilosophy", element: <OurPhilosophy/>},
       {path: "/admin/moments", element: <UploadMoments/>},
+      {path: "/list", element: <StudentList/>},
+      {path: "/student/:id", element: <StudentDetails/>},
+      {path: "/add", element: <AddStudent/>},
+      {path: "/admin/teacher", element: <AdminTeacher/>},
+      {path: "/payment", element: <Payment/>},
+      {path: "/Paymentdetails", element: <Paymentdetails/>} ,
+      {path: "/contact-us", element: <Contactus/>},
+      {path: "/postion", element: <Applyposition/>}
     ],
   },
 ]);

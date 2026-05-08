@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from "react";
+// ===============================
+// AdminFee.jsx
+// ===============================
+
+import React, { useEffect, useState } from "react";
 
 const AdminFee = () => {
 
   const [fees, setFees] = useState([]);
+
+  const [editId, setEditId] = useState(null);
+
   const [message, setMessage] = useState("");
+
+
 
   const [form, setForm] = useState({
     className: "",
@@ -14,54 +23,119 @@ const AdminFee = () => {
     regFee: "",
     development: "",
     admission: "",
-    total: ""
+    total: "",
   });
 
-  // 🔥 Auto hide message
-  useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => setMessage(""), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [message]);
 
-  // FETCH
+
+
+
+
+  // ===================================
+  // FETCH FEES
+  // ===================================
   const fetchFees = async () => {
+
     try {
-      const res = await fetch("https://araybhat-1.onrender.com/api/fees/all");
+
+      const res = await fetch(
+        "http://localhost:5000/api/fees/all"
+      );
+
       const data = await res.json();
+
       setFees(data);
-    } catch (err) {
-      console.log(err);
+
+    } catch (error) {
+
+      console.log(error);
     }
   };
+
+
 
   useEffect(() => {
     fetchFees();
   }, []);
 
-  // INPUT CHANGE
+
+
+
+
+
+
+  // ===================================
+  // HANDLE CHANGE
+  // ===================================
   const handleChange = (e) => {
+
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  // ADD FEE
+
+
+
+
+
+
+
+  // ===================================
+  // ADD OR UPDATE
+  // ===================================
   const submitFee = async () => {
+
     try {
 
-      await fetch("https://araybhat-1.onrender.com/api/fees/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      });
+      // UPDATE
+      if (editId) {
 
-      setMessage("✅ Fee Added Successfully!");
+        await fetch(
+          `http://localhost:5000/api/fees/update/${editId}`,
+          {
+            method: "PUT",
 
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(form),
+          }
+        );
+
+        setMessage("Fee Updated Successfully");
+      }
+
+
+
+      // ADD
+      else {
+
+        await fetch(
+          "http://localhost:5000/api/fees/add",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(form),
+          }
+        );
+
+        setMessage("Fee Added Successfully");
+      }
+
+
+
+
+
+
+
+      // RESET FORM
       setForm({
         className: "",
         tuition: "",
@@ -71,111 +145,251 @@ const AdminFee = () => {
         regFee: "",
         development: "",
         admission: "",
-        total: ""
+        total: "",
       });
+
+      setEditId(null);
 
       fetchFees();
 
-    } catch (err) {
-      console.log(err);
-      setMessage("❌ Error adding fee");
+    } catch (error) {
+
+      console.log(error);
     }
   };
 
+
+
+
+
+
+
+
+  // ===================================
+  // DELETE
+  // ===================================
+  const deleteFee = async (id) => {
+
+    try {
+
+      await fetch(
+        `http://localhost:5000/api/fees/delete/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      setMessage("Fee Deleted Successfully");
+
+      fetchFees();
+
+    } catch (error) {
+
+      console.log(error);
+    }
+  };
+
+
+
+
+
+
+
+
+  // ===================================
+  // EDIT
+  // ===================================
+  const editFee = (item) => {
+
+    setEditId(item._id);
+
+    setForm({
+      className: item.className,
+      tuition: item.tuition,
+      activity: item.activity,
+      computer: item.computer,
+      totalPerMonth: item.totalPerMonth,
+      regFee: item.regFee,
+      development: item.development,
+      admission: item.admission,
+      total: item.total,
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+
+
+
+
+
+
+
   return (
-    <div className="p-4 md:p-10 bg-gray-100 min-h-screen">
+    <div className="min-h-screen bg-gray-100 p-6">
 
-      {/* 🔥 Message */}
-      {message && (
-        <div className="mb-4 bg-green-500 text-white px-4 py-3 rounded-xl text-center font-semibold shadow">
-          {message}
+      <div className="max-w-7xl mx-auto">
+
+
+
+        {/* HEADING */}
+        <div className="mb-8 text-center">
+
+          <h1 className="text-4xl font-bold text-gray-800">
+            Fee Management
+          </h1>
+
+          <p className="text-gray-600 mt-2">
+            Add, Update & Delete School Fees
+          </p>
+
         </div>
-      )}
 
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
-        Fee Management
-      </h2>
 
-      {/* 🔥 FORM */}
-      <div className="bg-white p-4 md:p-6 rounded-2xl shadow-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 
-        {Object.keys(form).map((key) => (
-          <input
-            key={key}
-            name={key}
-            placeholder={key}
-            value={form[key]}
-            onChange={handleChange}
-            className="border p-3 rounded-xl"
-          />
-        ))}
 
-      </div>
 
-      <button
-        onClick={submitFee}
-        className="bg-green-600 text-white px-6 py-3 mt-6 rounded-xl w-full md:w-auto"
-      >
-        Add Fee
-      </button>
 
-      {/* 🔥 MOBILE VIEW (CARDS) */}
-      <div className="mt-10 grid gap-4 md:hidden">
+        {/* MESSAGE */}
+        {message && (
 
-        {fees.map((item) => (
-          <div key={item._id} className="bg-white p-4 rounded-2xl shadow-md">
+          <div className="bg-green-600 text-white p-3 rounded-xl mb-6 text-center">
 
-            <h3 className="font-bold text-lg text-gray-800">
-              {item.className}
-            </h3>
-
-            <div className="text-sm text-gray-600 mt-2 space-y-1">
-              <p>Tuition: ₹{item.tuition}</p>
-              <p>Activity: {item.activity}</p>
-              <p>Computer: {item.computer}</p>
-              <p className="font-semibold text-green-600">
-                Total: ₹{item.total}
-              </p>
-            </div>
+            {message}
 
           </div>
-        ))}
+        )}
 
+
+
+
+
+
+
+
+        {/* FORM */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 grid md:grid-cols-3 gap-4">
+
+          {Object.keys(form).map((key) => (
+
+            <input
+              key={key}
+              type="text"
+              name={key}
+              placeholder={key}
+              value={form[key]}
+              onChange={handleChange}
+              className="border p-3 rounded-xl outline-none"
+            />
+          ))}
+
+        </div>
+
+
+
+
+
+
+
+
+        {/* BUTTON */}
+        <button
+          onClick={submitFee}
+          className={`mt-6 px-8 py-3 rounded-xl text-white font-semibold ${
+            editId
+              ? "bg-blue-600"
+              : "bg-green-600"
+          }`}
+        >
+
+          {editId
+            ? "Update Fee"
+            : "Add Fee"}
+
+        </button>
+
+
+
+
+
+
+
+
+
+        {/* FEES */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+
+          {fees.map((item) => (
+
+            <div
+              key={item._id}
+              className="bg-white rounded-2xl shadow-lg p-5"
+            >
+
+              <h2 className="text-2xl font-bold text-gray-800">
+                {item.className}
+              </h2>
+
+
+
+
+
+
+              <div className="mt-4 space-y-2 text-gray-600">
+
+                <p>Tuition : ₹{item.tuition}</p>
+
+                <p>Activity : ₹{item.activity}</p>
+
+                <p>Computer : ₹{item.computer}</p>
+
+                <p>Total/Month : ₹{item.totalPerMonth}</p>
+
+                <p>Registration : ₹{item.regFee}</p>
+
+                <p>Development : ₹{item.development}</p>
+
+                <p>Admission : ₹{item.admission}</p>
+
+                <p className="font-bold text-green-600">
+                  Total : ₹{item.total}
+                </p>
+
+              </div>
+
+
+
+
+
+
+
+              {/* BUTTONS */}
+              <div className="flex gap-3 mt-6">
+
+                <button
+                  onClick={() => editFee(item)}
+                  className="flex-1 bg-blue-600 text-white py-2 rounded-xl"
+                >
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => deleteFee(item._id)}
+                  className="flex-1 bg-red-600 text-white py-2 rounded-xl"
+                >
+                  Delete
+                </button>
+
+              </div>
+
+            </div>
+          ))}
+
+        </div>
       </div>
-
-      {/* 🔥 DESKTOP TABLE */}
-      <div className="mt-10 overflow-x-auto hidden md:block">
-
-        <table className="min-w-full border text-center bg-white rounded-xl overflow-hidden shadow">
-
-          <thead className="bg-green-600 text-white">
-            <tr>
-              <th className="p-3">Class</th>
-              <th className="p-3">Tuition</th>
-              <th className="p-3">Activity</th>
-              <th className="p-3">Computer</th>
-              <th className="p-3">Total</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {fees.map((item) => (
-              <tr key={item._id} className="border-t">
-                <td className="p-3">{item.className}</td>
-                <td className="p-3">₹{item.tuition}</td>
-                <td className="p-3">{item.activity}</td>
-                <td className="p-3">{item.computer}</td>
-                <td className="p-3 font-bold text-green-600">
-                  ₹{item.total}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-
-        </table>
-
-      </div>
-
     </div>
   );
 };
