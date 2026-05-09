@@ -277,7 +277,7 @@ const Onlineregistrartion = () => {
               className="bg-purple-600 px-12 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-green-500 transition-all duration-300"
             >
 
-              Compelete Your Registration
+              Complete Your Registration
 
             </motion.button>
             </Link>

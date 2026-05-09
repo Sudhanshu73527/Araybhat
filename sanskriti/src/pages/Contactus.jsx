@@ -45,7 +45,7 @@ const Contactus = () => {
 
               <div>
                 <h3 className="font-semibold text-gray-800">Call Us</h3>
-                <p className="text-gray-600">+91 98765 43210</p>
+                <p className="text-gray-600">+91 99319 79868</p>
               </div>
             </div>
 
@@ -56,7 +56,7 @@ const Contactus = () => {
 
               <div>
                 <h3 className="font-semibold text-gray-800">Email Address</h3>
-                <p className="text-gray-600">info@example.com</p>
+                <p className="text-gray-600">info@AryabhattaNationalPublic.com</p>
               </div>
             </div>
 
@@ -68,7 +68,7 @@ const Contactus = () => {
               <div>
                 <h3 className="font-semibold text-gray-800">Location</h3>
                 <p className="text-gray-600">
-                  Ramnagar, Bihar, India
+                 Semara, Ramnagar, Bihar, India
                 </p>
               </div>
             </div>
@@ -81,7 +81,7 @@ const Contactus = () => {
               <div>
                 <h3 className="font-semibold text-gray-800">Working Hours</h3>
                 <p className="text-gray-600">
-                  Mon - Sat : 9:00 AM - 7:00 PM
+                  Mon - Sat : 6:30 AM - 3:00 PM
                 </p>
               </div>
             </div>
