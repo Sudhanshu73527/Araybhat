@@ -45,6 +45,7 @@ import Payment from "../pages/Payment";
 import Paymentdetails from "../pages/Paymentdetails";
 import Contactus from "../pages/Contactus";
 import Applyposition from "../pages/Applyposition";
+import AdminPayment from "../admin/pages/AdminPayment";
 
 const router = createBrowserRouter([
   {
@@ -94,7 +95,8 @@ const router = createBrowserRouter([
       {path: "/payment", element: <Payment/>},
       {path: "/Paymentdetails", element: <Paymentdetails/>} ,
       {path: "/contact-us", element: <Contactus/>},
-      {path: "/postion", element: <Applyposition/>}
+      {path: "/postion", element: <Applyposition/>},
+      {path: "/admin/payment", element: <AdminPayment/>}
     ],
   },
 ]);
