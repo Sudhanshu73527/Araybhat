@@ -35,7 +35,7 @@ const AdminPayment = () => {
   // ======================
   const fetchPayment = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/payment/get");
+      const res = await axios.get("https://araybhat-1.onrender.com/api/payment/get");
 
       if (res.data.payment) {
         setPaymentId(res.data.payment._id);
@@ -60,13 +60,13 @@ const AdminPayment = () => {
     try {
       if (paymentId) {
         await axios.put(
-          `http://localhost:5000/api/payment/update/${paymentId}`,
+          `https://araybhat-1.onrender.com/api/payment/update/${paymentId}`,
           formData
         );
 
         alert("Payment Details Updated");
       } else {
-        await axios.post("http://localhost:5000/api/payment/add", formData);
+        await axios.post("https://araybhat-1.onrender.com/api/payment/add", formData);
 
         alert("Payment Details Added");
       }
