@@ -200,7 +200,7 @@ const Footer = () => {
                 </h4>
 
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  Semra, Ramnagar <br />
+                  Semara Bargon, Deoraj <br />
                   West Champaran, Bihar – 845106
                 </p>
               </div>

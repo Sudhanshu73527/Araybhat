@@ -126,7 +126,8 @@ const Herosection = () => {
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
             Welcome to <br />
             <span className="text-yellow-400 drop-shadow-lg">
-              Aryabhatta National Public School
+              Aryabhatta National Public School <br />
+              Semara Bargon, Deoraj
             </span>
           </h1>
 

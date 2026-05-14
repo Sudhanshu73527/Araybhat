@@ -35,7 +35,7 @@ const facilities = [
     desc: "Comfortable, hygienic and secure hostel facilities for students from distant locations.",
     icon: <FaUtensils />,
     color: "bg-[#7EC8E3]",
-    tag: "Comeing Soon",
+    tag: "Coming Soon",
   },
   {
     title: "Love & Care",
@@ -49,7 +49,7 @@ const facilities = [
     desc: "Smart classrooms with digital boards, modern tools and interactive learning methods.",
     icon: <FaLaptop />,
     color: "bg-[#F48FB1]",
-    tag: "Comeing Soon",
+    tag: "Coming Soon",
   },
 ];
 

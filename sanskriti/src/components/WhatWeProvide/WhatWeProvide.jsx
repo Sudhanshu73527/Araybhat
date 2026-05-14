@@ -88,7 +88,7 @@ const WhatWeProvide = () => {
                 <p className="text-gray-600 text-[16px] leading-relaxed mb-8">
                   {item.description}
                 </p>
-
+{/* 
                 <button
                   className="
                     inline-flex items-center gap-2
@@ -104,7 +104,7 @@ const WhatWeProvide = () => {
                 >
                   Learn More
                   <span className="text-lg">→</span>
-                </button>
+                </button> */}
               </div>
             </div>
           ))}

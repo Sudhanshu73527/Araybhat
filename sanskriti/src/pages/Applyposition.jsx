@@ -33,7 +33,7 @@ const Applyposition = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const phoneNumber = "919876543210"; // Your WhatsApp Number
+    const phoneNumber = "+9199319 79868"; // Your WhatsApp Number
 
     const text = `
 📌 *Teacher Job Application*

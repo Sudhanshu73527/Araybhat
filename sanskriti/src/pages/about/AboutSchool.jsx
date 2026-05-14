@@ -51,7 +51,7 @@ const AboutSchool = () => {
             {/* Floating Card */}
             <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-5 py-4 md:px-6 md:py-5 rounded-xl shadow-lg">
               <h3 className="text-lg md:text-xl font-bold text-yellow-700">
-                14+ Years
+                9 Years
               </h3>
               <p className="text-gray-600 text-xs md:text-sm">
                 Of Academic Excellence

@@ -93,7 +93,7 @@ const Navbar = () => {
             </span>
             <span className="flex items-center space-x-2">
               <FaEnvelope className="text-yellow-400" />
-              <span>araybhatnationalSchool@.in</span>
+              <span>araybhatnationalSchool@.com</span>
             </span>
           </div>
 
