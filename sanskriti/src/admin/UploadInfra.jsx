@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { getImageUrl } from "../utils/imageUrl";
 
 const BASE_URL = "https://araybhat-1.onrender.com";
 
@@ -128,7 +129,7 @@ const UploadInfra = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {images.map((img) => {
-              const imageUrl = `${BASE_URL}/uploads/${img.image}`;
+              const imageUrl = getImageUrl(img.image);
 
               return (
                 <motion.div

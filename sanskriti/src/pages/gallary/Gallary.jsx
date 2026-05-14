@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const Gallary = () => {
 
@@ -42,25 +43,23 @@ const Gallary = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
-          {images.map((img) => (
+          {images.map((img) => {
+            const imageUrl = getImageUrl(img.image);
 
-            <div
-              key={img._id}
-              onClick={() =>
-                setSelectedImage(`https://araybhat-1.onrender.com/uploads/${img.image}`)
-              }
-              className="cursor-pointer overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition duration-500 group"
-            >
-
-              <img
-                src={`https://araybhat-1.onrender.com/uploads/${img.image}`}
-                alt="School Gallery"
-                className="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
-              />
-
-            </div>
-
-          ))}
+            return (
+              <div
+                key={img._id}
+                onClick={() => setSelectedImage(imageUrl)}
+                className="cursor-pointer overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition duration-500 group"
+              >
+                <img
+                  src={imageUrl}
+                  alt="School Gallery"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
+                />
+              </div>
+            );
+          })}
 
         </div>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const Schoolevents = () => {
   const [events, setEvents] = useState([]);
@@ -47,7 +48,7 @@ const Schoolevents = () => {
 
               {/* Image */}
               <img
-                src={`https://araybhat-1.onrender.com/uploads/${event.image}`}
+                src={getImageUrl(event.image)}
                 alt={event.title}
                 className="h-64 w-full object-cover group-hover:scale-110 transition duration-500"
               />

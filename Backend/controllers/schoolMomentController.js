@@ -1,13 +1,21 @@
 import SchoolMoment from "../models/SchoolMoment.js";
-import fs from "fs";
-import path from "path";
+import { uploadBufferToCloudinary } from "../Config/cloudinary.js";
 
 // ✅ ADD IMAGE
 export const addMoment = async (req, res) => {
   try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const uploadedImage = await uploadBufferToCloudinary(
+      req.file.buffer,
+      "moments"
+    );
+
     const newMoment = new SchoolMoment({
       title: req.body.title,
-      image: req.file.filename, // local storage
+      image: uploadedImage.secure_url,
     });
 
     await newMoment.save();
@@ -37,15 +45,6 @@ export const getMoments = async (req, res) => {
 export const deleteMoment = async (req, res) => {
   try {
     const moment = await SchoolMoment.findById(req.params.id);
-
-    // delete image from uploads
-    if (moment?.image) {
-      const filePath = path.join("uploads", moment.image);
-
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-      }
-    }
 
     await SchoolMoment.findByIdAndDelete(req.params.id);
 

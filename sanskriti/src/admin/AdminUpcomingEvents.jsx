@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getImageUrl } from "../utils/imageUrl";
 
 const AdminUpcomingEvents = () => {
 
@@ -151,7 +152,7 @@ const AdminUpcomingEvents = () => {
           >
 
             <img
-              src={`https://araybhat-1.onrender.com/uploads/${event.image}`}
+              src={getImageUrl(event.image)}
               className="w-full h-32 sm:h-40 object-cover"
             />
 

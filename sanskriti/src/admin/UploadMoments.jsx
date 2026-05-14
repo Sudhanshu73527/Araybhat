@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { getImageUrl } from "../utils/imageUrl";
 
 const UploadMoments = () => {
   const [title, setTitle] = useState("");
@@ -108,7 +109,7 @@ const UploadMoments = () => {
               className="bg-white rounded-2xl shadow-md overflow-hidden"
             >
               <img
-                src={`https://araybhat-1.onrender.com/uploads/${item.image}`}
+                src={getImageUrl(item.image)}
                 alt={item.title}
                 className="w-full h-48 object-cover"
               />

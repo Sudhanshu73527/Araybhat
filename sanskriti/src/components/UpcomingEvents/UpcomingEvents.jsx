@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const UpcomingEvents = ()=>{
 
@@ -49,7 +50,7 @@ className="group bg-white rounded-3xl overflow-hidden border border-gray-200 sha
 <div className="relative h-60 overflow-hidden">
 
 <img
-src={`https://araybhat-1.onrender.com/uploads/${event.image}`}
+src={getImageUrl(event.image)}
 className="w-full h-full object-cover"
 />
 

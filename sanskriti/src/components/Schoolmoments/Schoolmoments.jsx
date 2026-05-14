@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const BASE_URL = "https://araybhat-1.onrender.com";
 
@@ -46,7 +47,7 @@ const Schoolmoments = () => {
             className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg md:shadow-xl mb-6 md:mb-10 group"
           >
             <img
-              src={`${BASE_URL}/uploads/${featured.image}`}
+              src={getImageUrl(featured.image)}
               alt={featured.title}
               className="w-full h-[220px] sm:h-[300px] md:h-[450px] object-cover group-hover:scale-105 transition duration-500"
             />
@@ -71,7 +72,7 @@ const Schoolmoments = () => {
               className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-sm md:shadow-md group cursor-pointer active:scale-95"
             >
               <img
-                src={`${BASE_URL}/uploads/${img.image}`}
+                src={getImageUrl(img.image)}
                 alt={img.title}
                 className="w-full aspect-[4/3] object-cover group-hover:scale-110 transition duration-500"
               />

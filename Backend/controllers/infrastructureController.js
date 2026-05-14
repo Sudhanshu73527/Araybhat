@@ -1,6 +1,5 @@
 import Infrastructure from "../models/Infrastructure.js";
-import fs from "fs";
-import path from "path";
+import { uploadBufferToCloudinary } from "../Config/cloudinary.js";
 
 // ================= ADD IMAGE =================
 export const addInfrastructure = async (req, res) => {
@@ -9,8 +8,13 @@ export const addInfrastructure = async (req, res) => {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
+    const uploadedImage = await uploadBufferToCloudinary(
+      req.file.buffer,
+      "infrastructure"
+    );
+
     const newData = new Infrastructure({
-      image: req.file.filename,
+      image: uploadedImage.secure_url,
     });
 
     await newData.save();
@@ -53,14 +57,6 @@ export const deleteInfrastructure = async (req, res) => {
         success: false,
         message: "Image not found",
       });
-    }
-
-    // 📁 File path
-    const filePath = path.join("uploads", imageData.image);
-
-    // 🧹 Delete file if exists
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
     }
 
     // 🗑️ Delete from DB

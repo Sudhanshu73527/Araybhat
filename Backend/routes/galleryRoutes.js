@@ -1,6 +1,7 @@
 import express from "express";
 import upload from "../middleware/upload.js";
 import Gallery from "../models/Gallery.js";
+import { uploadBufferToCloudinary } from "../Config/cloudinary.js";
 
 const router = express.Router();
 
@@ -9,9 +10,17 @@ const router = express.Router();
 
 router.post("/upload",upload.single("image"),async(req,res)=>{
 
+if(!req.file){
+
+return res.status(400).json({message:"No file uploaded"});
+
+}
+
+const uploadedImage = await uploadBufferToCloudinary(req.file.buffer,"gallery");
+
 const newImage = new Gallery({
 
-image:req.file.filename
+image:uploadedImage.secure_url
 
 });
 

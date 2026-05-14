@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getImageUrl } from "../utils/imageUrl";
 
 const AdminGallery = () => {
 
@@ -117,7 +118,7 @@ const AdminGallery = () => {
           >
 
             <img
-              src={`https://araybhat-1.onrender.com/uploads/${img.image}`}
+              src={getImageUrl(img.image)}
               className="w-full h-32 sm:h-40 object-cover"
             />
 

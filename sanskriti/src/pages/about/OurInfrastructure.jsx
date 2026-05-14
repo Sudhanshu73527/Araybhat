@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import axios from "axios";
+import { getImageUrl } from "../../utils/imageUrl";
 
 const BASE_URL = "https://araybhat-1.onrender.com";
 
@@ -62,7 +63,7 @@ const OurInfrastructure = () => {
         
         {images.length > 0 ? (
           images.map((img, index) => {
-            const imageUrl = `${BASE_URL}/uploads/${img.image}`;
+            const imageUrl = getImageUrl(img.image);
 
             return (
               <motion.div

@@ -9,7 +9,7 @@
 
 //   const addNotice = async () => {
 
-//     await fetch("http://localhost:5000/api/notices/add",{
+//     await fetch("https://araybhat-1.onrender.comapi/notices/add",{
 
 //       method:"POST",
 

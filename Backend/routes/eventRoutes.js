@@ -1,6 +1,7 @@
 import express from "express";
 import upload from "../middleware/upload.js";
 import Event from "../models/Event.js";
+import { uploadBufferToCloudinary } from "../Config/cloudinary.js";
 
 const router = express.Router();
 
@@ -20,6 +21,12 @@ res.json(events);
 
 router.post("/upload",upload.single("image"),async(req,res)=>{
 
+if(!req.file){
+
+return res.status(400).json({message:"No file uploaded"});
+
+}
+
 const total = await Event.countDocuments();
 
 if(total >= 4){
@@ -28,10 +35,12 @@ return res.json({message:"Only 4 event images allowed"});
 
 }
 
+const uploadedImage = await uploadBufferToCloudinary(req.file.buffer,"events");
+
 const newEvent = new Event({
 
 title:req.body.title,
-image:req.file.filename
+image:uploadedImage.secure_url
 
 });
 
