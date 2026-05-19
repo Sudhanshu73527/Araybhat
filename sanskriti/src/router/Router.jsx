@@ -10,7 +10,6 @@ import Gallary from "../pages/gallary/Gallary";
 import Rte from "../pages/about/Rte";
 import Admissionprocess from "../pages/admission/Admissionprocess";
 import Onlineregistrartion from "../pages/admission/Onlineregistrartion";
-import Teacherdetails from "../pages/about/Teacherdetails";
 import Admissionnotification from "../pages/admission/Admissionnotification";
 import Feestructure from "../pages/mandatory/Feestructure";
 import Studentdetails from "../pages/mandatory/Studentdetails";
@@ -40,7 +39,6 @@ import AdminEnquiry from "../admin/AdminEnquiry";
 import Chairmenfullmessage from "../pages/Chairmenfullmessage";
 import OurPhilosophy from "../pages/about/OurPhilosophy";
 import UploadMoments from "../admin/UploadMoments";
-import AdminTeacher from "../admin/pages/AdminTeacher";
 import Payment from "../pages/Payment";
 import Paymentdetails from "../pages/Paymentdetails";
 import Contactus from "../pages/Contactus";
@@ -61,7 +59,6 @@ const router = createBrowserRouter([
       {path: "/rte", element: <Rte/>},
       {path: "/admission-process", element: <Admissionprocess/>},
       {path: "/online-registration", element: <Onlineregistrartion/>},
-      {path: "/teacher", element: <Teacherdetails/>},
       {path: "/notification", element: <Admissionnotification/>},
       {path:"/mandatory/fee", element: <Feestructure/>},
       {path: "/mandatory/student", element: <Studentdetails/>},
@@ -91,7 +88,6 @@ const router = createBrowserRouter([
       {path: "/fullvision", element: <Chairmenfullmessage/>},
       {path: "OurPhilosophy", element: <OurPhilosophy/>},
       {path: "/admin/moments", element: <UploadMoments/>},
-      {path: "/admin/teacher", element: <AdminTeacher/>},
       {path: "/payment", element: <Payment/>},
       {path: "/Paymentdetails", element: <Paymentdetails/>} ,
       {path: "/contact-us", element: <Contactus/>},

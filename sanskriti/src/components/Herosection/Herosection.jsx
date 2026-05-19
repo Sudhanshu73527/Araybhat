@@ -156,7 +156,7 @@ const Herosection = () => {
 
       {/* WHATSAPP BUTTON */}
       <a
-        href="https://wa.me/917352205506"
+        href="https://wa.me/919931979868"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-5 right-4 md:bottom-6 md:right-6 bg-green-500 text-white p-4 rounded-full shadow-xl z-50 scale-95 md:scale-100"

@@ -11,7 +11,7 @@ const Academicssection = () => {
   const sections = [
     {
       title: "Pre-Primary",
-      class: "Nursery - UKG",
+      class: "K1,K2,K3",
       icon: <FaChild />,
       description:
         "A nurturing environment focused on play-based learning, creativity, and early skill development.",

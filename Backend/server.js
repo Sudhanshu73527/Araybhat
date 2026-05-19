@@ -13,7 +13,6 @@ import admissionRoutes from "./routes/admissionRoutes.js";
 import infrastructureRoutes from "./routes/infrastructureRoutes.js";
 import enquiryRoutes from "./routes/enquiryRoutes.js";
 import schoolMomentRoutes from "./routes/schoolMomentRoutes.js";
-import teacherRoutes from "./routes/teacherRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
@@ -29,25 +28,17 @@ connectDB();
 // ADMIN ROUTE
 app.use("/api/admin", adminRoutes);
 app.use("/api/notices", noticeRoutes);
-app.use("/uploads",express.static("uploads"));
-app.use("/api/gallery",galleryRoutes);
-app.use("/uploads",express.static("uploads"));
-app.use("/uploads",express.static("uploads"));
-app.use("/api/events",eventRoutes);
-app.use("/uploads",express.static("uploads"));
-app.use("/api/upcoming-events",upcomingEventRoutes);
+app.use("/api/gallery", galleryRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/upcoming-events", upcomingEventRoutes);
 app.use("/api/fees", feeRoutes);
-app.use("/api/admission",admissionRoutes);
-app.use("/uploads", express.static("uploads"))
+app.use("/api/admission", admissionRoutes);
 app.use("/api/infrastructure", infrastructureRoutes);
 app.use("/api/enquiry", enquiryRoutes);
 app.use("/api/moments", schoolMomentRoutes);
-app.use("/api/teachers", teacherRoutes);
 app.use("/api/payment", paymentRoutes);
 
-
 app.use("/uploads", express.static("uploads"));
-
 
 app.get("/", (req, res) => {
   res.send("Backend Running 🚀");
