@@ -164,7 +164,7 @@ const AdminDashboard = () => {
     { title: "Enquiry", icon: <FaClipboardList />, link: "/admin/enq", color: "from-pink-500 to-rose-500", desc: "User queries" },
     { title: "Moments", icon: <FaRegSmile />, link: "/admin/moments", color: "from-orange-500 to-red-500", desc: "Memories" },
     { title: "Update Payment details", icon: <FaRegSmile />, link: "/admin/payment", color: "from-orange-500 to-red-500", desc: "Update Payment Details" },
-    { title: "Update Payment details", icon: <FaRegSmile />, link: "/admin/Library", color: "from-orange-500 to-red-500", desc: "Update Payment Details" },
+    { title: "Update Library", icon: <FaRegSmile />, link: "/admin/Library", color: "from-orange-500 to-red-500", desc: "Update Payment Details" },
 
 
   ]; 
