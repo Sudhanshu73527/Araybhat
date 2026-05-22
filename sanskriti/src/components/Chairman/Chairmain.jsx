@@ -35,7 +35,7 @@ const Chairman = () => {
               <img
                 src={chairmanImg}
                 alt="Chairman"
-                className="relative w-[300px] sm:w-[380px] xl:w-[440px] object-cover grayscale hover:grayscale-0 transition duration-700"
+                className="relative w-[300px] sm:w-[380px] xl:w-[440px] object-cover transition duration-700"
               />{" "}
               {/* Tag */}{" "}
               <div className="absolute -top-6 left-0 bg-amber-400 text-[#0b1220] text-xs tracking-widest px-5 py-2 uppercase font-semibold">

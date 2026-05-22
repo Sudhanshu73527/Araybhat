@@ -95,7 +95,7 @@ const Principal = () => {
               <img
                 src={principalImg}
                 alt="Principal"
-                className="relative w-[300px] sm:w-[380px] xl:w-[440px] object-cover grayscale hover:grayscale-0 transition duration-700"
+                className="relative w-[300px] sm:w-[380px] xl:w-[440px] object-cover transition duration-700"
               />{" "}
               {/* Glass reflection */}{" "}
               <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition duration-700"></div>{" "}

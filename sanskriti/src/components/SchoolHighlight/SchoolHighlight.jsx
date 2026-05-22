@@ -19,7 +19,7 @@ const SchoolHighlight = () => {
           <h2 className="text-2xl md:text-3xl font-extrabold text-yellow-600 tracking-wide">
             Aryabhatta National Public School
             <span className="block text-yellow-600 mt-1">
-              Best CBSE School in Semara, Ramnagar
+              Best CBSE School in Semara Bargon Deoraj, Ramnagar
             </span>
           </h2>
 
