@@ -14,6 +14,7 @@ import infrastructureRoutes from "./routes/infrastructureRoutes.js";
 import enquiryRoutes from "./routes/enquiryRoutes.js";
 import schoolMomentRoutes from "./routes/schoolMomentRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import libraryRoutes from "./routes/libraryRoutes.js";
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use("/api/infrastructure", infrastructureRoutes);
 app.use("/api/enquiry", enquiryRoutes);
 app.use("/api/moments", schoolMomentRoutes);
 app.use("/api/payment", paymentRoutes);
+app.use("/api/library", libraryRoutes);
 
 app.use("/uploads", express.static("uploads"));
 

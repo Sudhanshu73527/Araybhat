@@ -127,7 +127,7 @@ const Herosection = () => {
             Welcome to <br />
             <span className="text-yellow-400 drop-shadow-lg">
               Aryabhatta National Public School <br />
-              Semara Bargon Deoraj
+              Semara Bargon Deoraj, Ramnagar
             </span>
           </h1>
 
