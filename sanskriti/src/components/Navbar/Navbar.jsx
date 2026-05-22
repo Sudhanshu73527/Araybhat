@@ -24,7 +24,6 @@ const Navbar = () => {
         { label: "Our Philosophy", path: "OurPhilosophy"},     
         { label: "Vision&Mission", path: "/visionmission" },    
         { label: "Our Infrastructure", path: "/Infrastructure" },      
-        { label: "Our Faculty", path: "/teacher" },
         { label: "RTE", path: "/rte" },
       ],
     },

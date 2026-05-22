@@ -17,6 +17,7 @@ import RCISSection from './components/RCISSection/RCISSection'
 import SchoolHighlight from './components/SchoolHighlight/SchoolHighlight'
 import Schoolevents from './components/Schoolevents/Schoolevents'
 import Schoolmoments from './components/Schoolmoments/Schoolmoments'
+import Director from './components/Director/Director'
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
       <RCISSection/>
       <Principal/>
       <Chairmain/>
+      <Director/>
       <Schoolevents/>
       <Schoolmoments/>
       <UpcomingEvents/>
