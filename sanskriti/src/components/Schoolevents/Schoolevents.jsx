@@ -6,7 +6,7 @@ const Schoolevents = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("https://araybhat-1.onrender.com/api/events/all")
+    fetch("https://araybhat-lrjj.onrender.com/api/events/all")
       .then((res) => res.json())
       .then((data) => {
         setEvents(data);

@@ -3,7 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { getImageUrl } from "../utils/imageUrl";
 
-const BASE_URL = "https://araybhat-1.onrender.com";
+const BASE_URL = "https://araybhat-lrjj.onrender.com"; 
 
 const UploadInfra = () => {
   const [image, setImage] = useState(null);

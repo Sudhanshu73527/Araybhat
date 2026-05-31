@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getImageUrl } from "../../utils/imageUrl";
 
-const BASE_URL = "https://araybhat-1.onrender.com";
+const BASE_URL = "https://araybhat-lrjj.onrender.com";
 
 const Schoolmoments = () => {
   const [images, setImages] = useState([]);

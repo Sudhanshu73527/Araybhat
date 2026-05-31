@@ -6,7 +6,7 @@ import React, {
 import axios from "axios";
 
 const BASE_URL =
-  "https://araybhat-1.onrender.com";
+  "https://araybhat-lrjj.onrender.com";
 
 const AdminLibrary = () => {
 

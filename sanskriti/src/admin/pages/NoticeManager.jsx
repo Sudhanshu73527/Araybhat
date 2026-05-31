@@ -8,7 +8,7 @@ const NoticeManager = () => {
 
   const addNotice = async () => {
 
-    await fetch("https://araybhat-1.onrender.comapi/notices/add", {
+    await fetch("https://araybhat-lrjj.onrender.com/api/notices/add", {
 
       method: "POST",
 

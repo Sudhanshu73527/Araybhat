@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 import axios from "axios";
 import { getImageUrl } from "../../utils/imageUrl";
 
-const BASE_URL = "https://araybhat-1.onrender.com";
+const BASE_URL = "https://araybhat-lrjj.onrender.com";
 
 const OurInfrastructure = () => {
   const [images, setImages] = useState([]);

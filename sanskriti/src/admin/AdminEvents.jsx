@@ -20,7 +20,7 @@ const AdminEvents = () => {
 
   // FETCH
   const fetchEvents = async () => {
-    const res = await fetch("https://araybhat-1.onrender.com/api/events/all");
+    const res = await fetch("https://araybhat-lrjj.onrender.com/api/events/all");
     const data = await res.json();
     setEvents(data);
   };
@@ -41,7 +41,7 @@ const AdminEvents = () => {
     formData.append("title", title);
     formData.append("image", file);
 
-    await fetch("https://araybhat-1.onrender.com/api/events/upload", {
+    await fetch("https://araybhat-lrjj.onrender.com/api/events/upload", {
       method: "POST",
       body: formData
     });
@@ -56,7 +56,7 @@ const AdminEvents = () => {
 
   // DELETE
   const deleteEvent = async (id) => {
-    await fetch(`https://araybhat-1.onrender.com/api/events/delete/${id}`, {
+    await fetch(`https://araybhat-lrjj.onrender.com/api/events/delete/${id}`, {
       method: "DELETE"
     });
 

@@ -8,7 +8,7 @@ const AdminEnquiry = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        "https://araybhat-1.onrender.com/api/enquiry/all"
+        "https://araybhat-lrjj.onrender.com/api/enquiry/all"
       );
       setData(res.data.data);
     } catch (err) {
@@ -25,7 +25,7 @@ const AdminEnquiry = () => {
   const handleStatus = async (id, status) => {
     try {
       await axios.put(
-        `https://araybhat-1.onrender.com/api/enquiry/status/${id}`,
+        `https://araybhat-lrjj.onrender.com/api/enquiry/status/${id}`,
         { status }
       );
 
@@ -44,7 +44,7 @@ const AdminEnquiry = () => {
       if (!window.confirm("Are you sure you want to delete?")) return;
 
       await axios.delete(
-        `https://araybhat-1.onrender.com/api/enquiry/delete/${id}`
+        `https://araybhat-lrjj.onrender.com/api/enquiry/delete/${id}`
       );
 
       setMessage("Deleted successfully 🗑️");

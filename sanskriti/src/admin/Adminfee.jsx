@@ -28,7 +28,7 @@ const AdminFee = () => {
   // ===================================
   const fetchFees = async () => {
     try {
-      const res = await fetch("https://araybhat-1.onrender.com/api/fees/all");
+      const res = await fetch("https://araybhat-lrjj.onrender.com/api/fees/all");
 
       const data = await res.json();
 
@@ -59,7 +59,7 @@ const AdminFee = () => {
     try {
       // UPDATE
       if (editId) {
-        await fetch(`https://araybhat-1.onrender.com/api/fees/update/${editId}`, {
+        await fetch(`https://araybhat-lrjj.onrender.com/api/fees/update/${editId}`, {
           method: "PUT",
 
           headers: {
@@ -74,7 +74,7 @@ const AdminFee = () => {
 
       // ADD
       else {
-        await fetch("https://araybhat-1.onrender.com/api/fees/add", {
+        await fetch("https://araybhat-lrjj.onrender.com/api/fees/add", {
           method: "POST",
 
           headers: {
@@ -113,7 +113,7 @@ const AdminFee = () => {
   // ===================================
   const deleteFee = async (id) => {
     try {
-      await fetch(`https://araybhat-1.onrender.com/api/fees/delete/${id}`, {
+      await fetch(`https://araybhat-lrjj.onrender.com/api/fees/delete/${id}`, {
         method: "DELETE",
       });
 

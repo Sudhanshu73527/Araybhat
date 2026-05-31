@@ -9,7 +9,7 @@ const UploadMoments = () => {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const res = await axios.get("https://araybhat-1.onrender.com/api/moments");
+    const res = await axios.get("https://araybhat-lrjj.onrender.com/api/moments");
     setData(res.data);
   };
 
@@ -35,7 +35,7 @@ const UploadMoments = () => {
     formData.append("image", image);
 
     await axios.post(
-      "https://araybhat-1.onrender.com/api/moments/add",
+      "https://araybhat-lrjj.onrender.com/api/moments/add",
       formData
     );
 
@@ -47,7 +47,7 @@ const UploadMoments = () => {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`https://araybhat-1.onrender.com/api/moments/${id}`);
+    await axios.delete(`https://araybhat-lrjj.onrender.com/api/moments/${id}`);
     alert("Deleted Successfully ❌");
     fetchData();
   };

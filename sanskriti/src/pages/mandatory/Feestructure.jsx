@@ -9,7 +9,7 @@ const [classFees,setClassFees] = useState([]);
 
 useEffect(()=>{
 
-fetch("https://araybhat-1.onrender.com/api/fees/all")
+fetch("https://araybhat-lrjj.onrender.com/api/fees/all")
 
 .then(res=>res.json())
 

@@ -23,7 +23,7 @@ const AdminAdmission = () => {
 
   // FETCH DATA
   useEffect(() => {
-    fetch("https://araybhat-1.onrender.com/api/admission/get")
+    fetch("https://araybhat-lrjj.onrender.com/api/admission/get")
       .then(res => res.json())
       .then(data => {
         if (data) {
@@ -43,7 +43,7 @@ const AdminAdmission = () => {
   // SAVE DATA
   const saveData = async () => {
     try {
-      await fetch("https://araybhat-1.onrender.com/api/admission/save", {
+      await fetch("https://araybhat-lrjj.onrender.com/api/admission/save", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
