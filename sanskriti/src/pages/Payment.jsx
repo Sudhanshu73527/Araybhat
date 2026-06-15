@@ -25,7 +25,7 @@ const Payment = () => {
   // =========================
   const fetchPayment = async () => {
     try {
-      const res = await axios.get("https://araybhat-1.onrender.com/api/payment/get");
+      const res = await axios.get("https://araybhat-lrjj.onrender.com/api/payment/get");
 
       if (res.data.payment) {
         setPayment(res.data.payment);
