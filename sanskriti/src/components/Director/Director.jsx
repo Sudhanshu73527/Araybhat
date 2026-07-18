@@ -1,118 +1,143 @@
 import React from "react";
 import {
-  FaQuoteLeft,
   FaGraduationCap,
   FaUsers,
   FaLightbulb,
+  FaQuoteLeft,
 } from "react-icons/fa";
+
+const features = [
+  {
+    icon: <FaGraduationCap />,
+    title: "Academic Excellence",
+  },
+  {
+    icon: <FaUsers />,
+    title: "Leadership",
+  },
+  
+];
 
 const Director = () => {
   return (
-    <section className="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 py-14 md:py-20 px-4 sm:px-6 md:px-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-slate-50 py-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
         {/* Heading */}
-        <div className="text-center mb-10 md:mb-16">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight">
-            Message From The
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mt-2">
-              Director
-            </span>
-          </h1>
 
-          <div className="w-20 md:w-28 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-4 rounded-full"></div>
+        <div className="text-center mb-16">
+
+          <span className="text-blue-600 font-semibold tracking-widest uppercase">
+            Leadership
+          </span>
+
+          <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mt-3">
+            Message From
+            <span className="text-blue-600"> Director</span>
+          </h2>
+
+          <div className="w-24 h-1 bg-blue-600 rounded-full mx-auto mt-5"></div>
+
         </div>
 
-        {/* Main Card */}
-        <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-[25px] md:rounded-[40px] shadow-2xl overflow-hidden">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* Decorative Glow */}
-          <div className="absolute top-0 left-0 w-40 md:w-72 h-40 md:h-72 bg-cyan-500/20 blur-3xl rounded-full"></div>
-          <div className="absolute bottom-0 right-0 w-40 md:w-72 h-40 md:h-72 bg-blue-600/20 blur-3xl rounded-full"></div>
+          {/* Image */}
 
-          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 items-center p-5 sm:p-8 md:p-16">
+          <div className="relative">
 
-            {/* Image Section */}
-            <div className="relative flex justify-center">
-              <div className="relative group">
+            <div className="overflow-hidden">
 
-                <img
-                  src="/dir.jpeg"
-                  alt="Director"
-                  className="w-[250px] sm:w-[300px] md:w-[400px] h-auto rounded-3xl object-cover shadow-2xl border-4 border-white/20 group-hover:scale-105 transition duration-500"
-                />
-
-                {/* Floating Badge */}
-                <div className="absolute -bottom-4 -right-2 md:-bottom-6 md:-right-6 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-3 md:px-6 md:py-4 rounded-2xl shadow-xl">
-                  <h3 className="font-bold text-sm md:text-lg">
-                    15+ Years
-                  </h3>
-                  <p className="text-[11px] md:text-sm opacity-90">
-                    Educational Excellence
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="text-white relative z-10 text-center lg:text-left">
-
-              <FaQuoteLeft className="text-4xl md:text-5xl text-cyan-400 mb-5 opacity-80 mx-auto lg:mx-0" />
-
-              <p className="text-sm sm:text-base md:text-xl leading-7 md:leading-9 text-slate-200 mb-6">
-                At our institution, we believe that education is not just
-                about gaining knowledge — it is about building character,
-                inspiring creativity, and shaping the leaders of tomorrow.
-                Our mission is to create a learning environment where every
-                student feels motivated, confident, and empowered to achieve
-                greatness.
-              </p>
-
-              <p className="text-sm sm:text-base md:text-xl leading-7 md:leading-9 text-slate-300 mb-8">
-                We are committed to academic excellence, innovation, and
-                moral values that prepare students to face the challenges
-                of the modern world with courage and wisdom.
-              </p>
-
-              {/* Features */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-
-                <div className="bg-white/10 border border-white/10 rounded-2xl p-4 text-center hover:bg-cyan-500/20 transition duration-300">
-                  <FaGraduationCap className="text-2xl md:text-3xl text-cyan-400 mx-auto mb-2" />
-                  <h4 className="font-semibold text-sm md:text-base">
-                    Excellence
-                  </h4>
-                </div>
-
-                <div className="bg-white/10 border border-white/10 rounded-2xl p-4 text-center hover:bg-cyan-500/20 transition duration-300">
-                  <FaUsers className="text-2xl md:text-3xl text-cyan-400 mx-auto mb-2" />
-                  <h4 className="font-semibold text-sm md:text-base">
-                    Leadership
-                  </h4>
-                </div>
-
-                <div className="bg-white/10 border border-white/10 rounded-2xl p-4 text-center hover:bg-cyan-500/20 transition duration-300">
-                  <FaLightbulb className="text-2xl md:text-3xl text-cyan-400 mx-auto mb-2" />
-                  <h4 className="font-semibold text-sm md:text-base">
-                    Innovation
-                  </h4>
-                </div>
-
-              </div>
-
-              {/* Director Name */}
-              <div className="border-l-0 lg:border-l-4 border-cyan-400 lg:pl-5 text-center lg:text-left">
-                <h2 className="text-xl md:text-2xl font-bold">
-                  Mr. S.K Pathak
-                </h2>
-
-                <p className="text-cyan-300 text-sm md:text-lg mt-1">
-                  Director, Aryabhatt National Public School
-                </p>
-              </div>
+              <img
+                src="/dir.jpeg"
+                alt="Director"
+                className="w-half h-130 object-cover transition duration-700"
+              />
 
             </div>
+
+            <div className="absolute bottom-6 left-6 bg-white rounded-3xl shadow-xl px-6 py-5">
+
+              <h3 className="text-3xl font-bold text-blue-600">
+                15+
+              </h3>
+
+              <p className="text-gray-600">
+                Years of Educational Excellence
+              </p>
+
+            </div>
+
           </div>
+
+          {/* Content */}
+
+          <div>
+
+            <FaQuoteLeft className="text-5xl text-blue-600 opacity-20 mb-6" />
+
+            <h3 className="text-3xl font-bold text-slate-900 mb-6">
+              Building Future Leaders Through Quality Education
+            </h3>
+
+            <p className="text-gray-600 leading-8 text-lg mb-6">
+
+              At Aryabhatt National Public School, education is more than
+              academics. It is about nurturing confident minds, developing
+              strong character, and inspiring young learners to become
+              responsible citizens who contribute positively to society.
+
+            </p>
+
+            <p className="text-gray-600 leading-8 text-lg mb-10">
+
+              We remain committed to providing a safe, innovative, and
+              inspiring learning environment where every student discovers
+              their true potential.
+
+            </p>
+
+            {/* Features */}
+
+            <div className="grid md:grid-cols-3 gap-5 mb-10">
+
+              {features.map((item, index) => (
+
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl p-6 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition"
+                >
+
+                  <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 text-2xl mb-4">
+
+                    {item.icon}
+
+                  </div>
+
+                  <h4 className="font-semibold text-slate-800">
+                    {item.title}
+                  </h4>
+
+                </div>
+
+              ))}
+
+            </div>
+
+            <div className="border-l-4 border-blue-600 pl-5">
+
+              <h2 className="text-2xl font-bold text-slate-900">
+                Mr. S.K Pathak
+              </h2>
+
+              <p className="text-blue-600 mt-1">
+                Director, Aryabhatt National Public School
+              </p>
+
+            </div>
+
+          </div>
+
         </div>
       </div>
     </section>
