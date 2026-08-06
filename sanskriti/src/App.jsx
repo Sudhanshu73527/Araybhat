@@ -18,6 +18,7 @@ import SchoolHighlight from './components/SchoolHighlight/SchoolHighlight'
 import Schoolevents from './components/Schoolevents/Schoolevents'
 import Schoolmoments from './components/Schoolmoments/Schoolmoments'
 import Director from './components/Director/Director'
+import ScrollToTop from './components/ScrollToTop'
 
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
       {/* <SchoolFeatures/> */}
       {/* <SchoolPrompts/> */}
       <Testi/>
+      <ScrollToTop/>
       {/* <Fotter/> */}
     </div>
   )

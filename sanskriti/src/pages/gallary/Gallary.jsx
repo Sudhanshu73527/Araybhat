@@ -9,7 +9,7 @@ const Gallary = () => {
   // FETCH IMAGES FROM BACKEND
   useEffect(() => {
 
-    fetch("https://araybhat-1.onrender.com/api/gallery/all")
+    fetch("https://araybhat-lrjj.onrender.com/api/gallery/all")
       .then((res) => res.json())
       .then((data) => setImages(data))
       .catch((err) => console.log(err));
