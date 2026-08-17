@@ -1,19 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaWhatsapp } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaArrowRight,
+  FaGraduationCap,
+  FaPhone,
+  FaCheck,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-/* ================= IMAGES ================= */
+/* =========================================================
+   IMAGES
+========================================================= */
 
 import desktopImg from "../../assets/bhat12.png";
-
 import mobileImg1 from "../../assets/aryy1.png";
 import mobileImg2 from "../../assets/aryy2.png";
 
 const desktopImages = [desktopImg];
 const mobileImages = [mobileImg1, mobileImg2];
 
-/* ================= DATA ================= */
+/* =========================================================
+   ADMISSION DATA
+========================================================= */
 
 const classList = [
   "Nursery",
@@ -72,11 +81,9 @@ const schoolFacilities = [
   "Experienced Teachers",
 ];
 
-/* ================= PARTICLES ================= */
-
-const particles = Array.from({ length: 25 });
-
-/* ================= HERO ================= */
+/* =========================================================
+   HERO SECTION
+========================================================= */
 
 const Herosection = () => {
   const [current, setCurrent] = useState(0);
@@ -86,7 +93,9 @@ const Herosection = () => {
   const [chatStep, setChatStep] = useState("main");
   const [selectedClass, setSelectedClass] = useState("");
 
-  /* ================= SCREEN ================= */
+  /* =======================================================
+     SCREEN SIZE
+  ======================================================= */
 
   useEffect(() => {
     const handleResize = () => {
@@ -97,13 +106,31 @@ const Herosection = () => {
 
     window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  /* ================= SLIDER ================= */
+  /* =======================================================
+     ACTIVE IMAGES
+  ======================================================= */
+
+  const activeImages = isMobile ? mobileImages : desktopImages;
+
+  /* =======================================================
+     RESET SLIDER
+  ======================================================= */
 
   useEffect(() => {
-    const activeImages = isMobile ? mobileImages : desktopImages;
+    setCurrent(0);
+  }, [isMobile]);
+
+  /* =======================================================
+     IMAGE SLIDER
+  ======================================================= */
+
+  useEffect(() => {
+    if (activeImages.length <= 1) return;
 
     const timer = setInterval(() => {
       setCurrent((prev) =>
@@ -114,24 +141,46 @@ const Herosection = () => {
     return () => clearInterval(timer);
   }, [isMobile]);
 
-  const activeImages = isMobile ? mobileImages : desktopImages;
+  /* =======================================================
+     CHAT FUNCTIONS
+  ======================================================= */
+
+  const openQuickHelp = () => {
+    setOpenChat(true);
+    setChatStep("main");
+    setSelectedClass("");
+  };
+
+  const closeQuickHelp = () => {
+    setOpenChat(false);
+    setChatStep("main");
+    setSelectedClass("");
+  };
+
+  const goBack = () => {
+    setChatStep("main");
+    setSelectedClass("");
+  };
+
+  /* =======================================================
+     JSX
+  ======================================================= */
 
   return (
-    <section className="relative w-full min-h-[92vh] overflow-hidden font-outfit">
+    <section className="relative w-full min-h-[88vh] h-[88vh] overflow-hidden font-outfit bg-black">
 
       {/* =====================================================
           BACKGROUND IMAGE
       ===================================================== */}
 
       <AnimatePresence mode="wait">
-
         <motion.img
           key={`${isMobile}-${current}`}
           src={activeImages[current]}
-          alt="Aryabhatta National Public School"
+          alt="Aryabhatta National Public School Campus"
           initial={{
             opacity: 0,
-            scale: 1.12,
+            scale: 1.05,
           }}
           animate={{
             opacity: 1,
@@ -139,722 +188,331 @@ const Herosection = () => {
           }}
           exit={{
             opacity: 0,
-            scale: 1.05,
           }}
           transition={{
-            duration: 1.4,
+            duration: 1,
             ease: "easeInOut",
           }}
           className="absolute inset-0 w-full h-full object-cover"
         />
-
       </AnimatePresence>
 
-
       {/* =====================================================
-          CINEMATIC DARK OVERLAY
+          SIMPLE DARK OVERLAY
       ===================================================== */}
 
       <div className="absolute inset-0 bg-black/55" />
 
-      <div
-        className="
-          absolute inset-0
-          bg-gradient-to-b
-          from-black/80
-          via-black/35
-          to-black/75
-        "
-      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
 
+      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/20" />
 
       {/* =====================================================
-          TRICOLOR LIGHT GLOW
+          HERO CONTENT
       ===================================================== */}
 
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="relative z-10 min-h-[88vh] h-full flex items-center">
 
-        <div
-          className="
-            absolute
-            -top-40
-            -left-40
-            w-[500px]
-            h-[500px]
-            rounded-full
-            bg-orange-500/20
-            blur-[120px]
-          "
-        />
+        <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
 
-        <div
-          className="
-            absolute
-            -bottom-40
-            -right-40
-            w-[500px]
-            h-[500px]
-            rounded-full
-            bg-green-500/20
-            blur-[120px]
-          "
-        />
+          <div className="max-w-3xl text-white">
 
-      </div>
+            {/* SMALL LABEL */}
 
-
-      {/* =====================================================
-          TOP TRICOLOR BAR
-      ===================================================== */}
-
-      <div className="absolute top-0 left-0 w-full z-30">
-
-        <div className="h-1 bg-orange-500" />
-
-        <div className="h-1 bg-white" />
-
-        <div className="h-1 bg-green-600" />
-
-      </div>
-
-
-      {/* =====================================================
-          FLOATING PARTICLES
-      ===================================================== */}
-
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-
-        {particles.map((_, index) => {
-
-          const colors = [
-            "bg-orange-400",
-            "bg-white",
-            "bg-green-400",
-          ];
-
-          return (
-            <motion.span
-              key={index}
+            <motion.div
               initial={{
                 opacity: 0,
-                y: "110vh",
-                x: `${Math.random() * 100}vw`,
+                y: 15,
               }}
               animate={{
-                opacity: [0, 0.8, 0],
-                y: "-10vh",
-                rotate: [0, 180, 360],
+                opacity: 1,
+                y: 0,
               }}
               transition={{
-                duration: 8 + Math.random() * 6,
-                repeat: Infinity,
-                delay: Math.random() * 6,
-                ease: "linear",
+                duration: 0.6,
               }}
-              className={`
-                absolute
-                w-1.5
-                h-1.5
-                rounded-full
-                ${colors[index % 3]}
-              `}
-            />
-          );
-        })}
-
-      </div>
-
-
-      {/* =====================================================
-          FLYING BIRDS
-      ===================================================== */}
-
-      <motion.div
-        initial={{ x: "-20vw", y: 50, opacity: 0 }}
-        animate={{
-          x: "120vw",
-          y: -50,
-          opacity: [0, 1, 1, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="
-          absolute
-          top-[18%]
-          left-0
-          text-white/70
-          text-xl
-          tracking-[8px]
-          z-10
-        "
-      >
-        🕊️ 🕊️
-      </motion.div>
-
-
-      {/* =====================================================
-          MAIN CONTENT
-      ===================================================== */}
-
-      <div
-        className="
-          relative
-          z-20
-          min-h-[92vh]
-          flex
-          items-center
-          justify-center
-          px-4
-          py-20
-        "
-      >
-
-        <div className="w-full max-w-6xl mx-auto text-center text-white">
-
-
-          {/* =================================================
-              PREMIUM INDEPENDENCE DAY BADGE
-          ================================================= */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: -30,
-              scale: 0.9,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
-            className="flex justify-center mb-5"
-          >
-
-            <div
-              className="
-                relative
-                px-6
-                py-2.5
-                rounded-full
-                bg-white/10
-                backdrop-blur-xl
-                border
-                border-white/30
-                shadow-[0_0_30px_rgba(255,255,255,0.12)]
-                overflow-hidden
-              "
+              className="mb-5"
             >
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-yellow-300">
 
-              {/* Animated shine */}
+                <span className="w-7 h-[2px] bg-yellow-400" />
 
-              <motion.div
-                animate={{
-                  x: ["-150%", "150%"],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatDelay: 2,
-                }}
-                className="
-                  absolute
-                  inset-0
-                  w-1/2
-                  bg-gradient-to-r
-                  from-transparent
-                  via-white/20
-                  to-transparent
-                  skew-x-12
-                "
-              />
-
-              <span className="relative z-10 text-xs sm:text-sm md:text-base font-bold tracking-wide">
-
-                🇮🇳 &nbsp; 15 AUGUST • 79TH INDEPENDENCE DAY &nbsp; 🇮🇳
+                Excellence in Education
 
               </span>
+            </motion.div>
 
-            </div>
+            {/* HEADING */}
 
-          </motion.div>
-
-
-          {/* =================================================
-              SCHOOL NAME
-          ================================================= */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.2,
-              duration: 0.9,
-            }}
-          >
-
-            <p
+            <motion.h1
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.1,
+                duration: 0.7,
+              }}
               className="
-                text-xs
-                sm:text-sm
-                md:text-base
-                uppercase
-                tracking-[0.35em]
-                text-gray-200
-                font-medium
-              "
-            >
-              Welcome to
-            </p>
-
-
-            <h1
-              className="
-                mt-3
                 text-4xl
                 sm:text-5xl
-                md:text-7xl
-                font-black
+                md:text-6xl
+                lg:text-7xl
+                font-bold
                 leading-[1.05]
                 tracking-tight
               "
             >
 
-              <span className="text-white drop-shadow-2xl">
-                Aryabhatta
-              </span>
-
+              Shaping Young Minds
               <br />
 
-              <span
-                className="
-                  bg-gradient-to-r
-                  from-orange-400
-                  via-white
-                  to-green-400
-                  bg-clip-text
-                  text-transparent
-                  drop-shadow-lg
-                "
-              >
-                National Public School
+              <span className="text-yellow-400">
+                Building Bright Futures.
               </span>
 
-            </h1>
+            </motion.h1>
 
-
-            {/* LOCATION */}
-
-            <p
-              className="
-                mt-3
-                text-base
-                sm:text-lg
-                md:text-2xl
-                font-semibold
-                text-gray-200
-              "
-            >
-              Semara Bargon Deoraj
-            </p>
-
-          </motion.div>
-
-
-          {/* =================================================
-              ASHOKA CHAKRA
-          ================================================= */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.5,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              delay: 0.4,
-              duration: 0.8,
-            }}
-            className="flex justify-center my-5"
-          >
+            {/* SCHOOL NAME */}
 
             <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
               animate={{
-                rotate: 360,
+                opacity: 1,
+                y: 0,
               }}
               transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear",
+                delay: 0.2,
+                duration: 0.7,
               }}
-              className="
-                w-12
-                h-12
-                sm:w-14
-                sm:h-14
-                rounded-full
-                border-2
-                border-blue-300/80
-                flex
-                items-center
-                justify-center
-                text-blue-200
-                text-3xl
-                shadow-[0_0_25px_rgba(96,165,250,0.25)]
-              "
+              className="mt-5"
             >
-              ☸
+
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">
+
+                Aryabhatta National Public School
+
+              </h2>
+
+              <p className="mt-1 text-sm sm:text-base text-white/70">
+
+                Semara Bargon Deoraj
+
+              </p>
+
             </motion.div>
 
-          </motion.div>
+            {/* DESCRIPTION */}
 
-
-          {/* =================================================
-              PATRIOTIC MESSAGE
-          ================================================= */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.5,
-              duration: 0.8,
-            }}
-          >
-
-            <h2
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.3,
+                duration: 0.7,
+              }}
               className="
-                text-xl
-                sm:text-2xl
-                md:text-3xl
-                font-bold
-              "
-            >
-              Celebrating the Spirit of{" "}
-
-              <span className="text-orange-400">
-                Freedom
-              </span>
-              ,{" "}
-
-              <span className="text-white">
-                Unity
-              </span>{" "}
-              &amp;{" "}
-
-              <span className="text-green-400">
-                Patriotism
-              </span>
-            </h2>
-
-
-            <p
-              className="
-                mt-3
+                mt-6
                 max-w-2xl
-                mx-auto
                 text-sm
                 sm:text-base
                 md:text-lg
-                text-gray-200
                 leading-relaxed
+                text-white/80
               "
             >
-              This Independence Day, let us inspire our students
-              to dream bigger, learn better and contribute towards
-              building a stronger and brighter India.
-            </p>
+              We provide a nurturing and modern learning environment
+              where students grow with knowledge, confidence,
+              discipline and creativity.
+            </motion.p>
 
-          </motion.div>
+            {/* BUTTONS */}
 
-
-          {/* =================================================
-              TRICOLOR LINE
-          ================================================= */}
-
-          <motion.div
-            initial={{
-              width: 0,
-            }}
-            animate={{
-              width: "180px",
-            }}
-            transition={{
-              delay: 0.7,
-              duration: 0.8,
-            }}
-            className="
-              mx-auto
-              mt-5
-              h-1.5
-              rounded-full
-              overflow-hidden
-              flex
-            "
-          >
-
-            <div className="w-1/3 bg-orange-500" />
-            <div className="w-1/3 bg-white" />
-            <div className="w-1/3 bg-green-600" />
-
-          </motion.div>
-
-
-          {/* =================================================
-              BUTTONS
-          ================================================= */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.8,
-              duration: 0.8,
-            }}
-            className="
-              mt-7
-              flex
-              flex-col
-              sm:flex-row
-              justify-center
-              gap-3
-            "
-          >
-
-            <Link to="/admission-process">
-
-              <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow:
-                    "0 10px 35px rgba(249,115,22,0.35)",
-                }}
-                whileTap={{
-                  scale: 0.97,
-                }}
-                className="
-                  w-full
-                  sm:w-auto
-                  px-8
-                  py-3.5
-                  rounded-full
-                  font-bold
-                  text-white
-                  bg-gradient-to-r
-                  from-orange-500
-                  to-orange-400
-                  shadow-xl
-                  cursor-pointer
-                "
-              >
-                🎓 View Admissions
-              </motion.button>
-
-            </Link>
-
-
-            <Link to="/academics/prospectus">
-
-              <motion.button
-                whileHover={{
-                  scale: 1.05,
-                }}
-                whileTap={{
-                  scale: 0.97,
-                }}
-                className="
-                  w-full
-                  sm:w-auto
-                  px-8
-                  py-3.5
-                  rounded-full
-                  font-semibold
-                  text-white
-                  border
-                  border-white/40
-                  bg-white/10
-                  backdrop-blur-xl
-                  hover:bg-white/20
-                  transition
-                "
-              >
-                📖 Download Prospectus
-              </motion.button>
-
-            </Link>
-
-          </motion.div>
-
-
-          {/* =================================================
-              PATRIOTIC FOOTER TEXT
-          ================================================= */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            transition={{
-              delay: 1,
-              duration: 1,
-            }}
-            className="mt-7"
-          >
-
-            <p
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.45,
+                duration: 0.7,
+              }}
               className="
+                mt-8
+                flex
+                flex-col
+                sm:flex-row
+                gap-3
+              "
+            >
+
+              {/* ADMISSION */}
+
+              <Link to="/admission-process">
+
+                <motion.button
+                  whileHover={{
+                    y: -2,
+                  }}
+                  whileTap={{
+                    scale: 0.97,
+                  }}
+                  className="
+                    w-full
+                    sm:w-auto
+                    flex
+                    items-center
+                    justify-center
+                    gap-3
+                    px-7
+                    py-3.5
+                    rounded-lg
+                    bg-yellow-400
+                    hover:bg-yellow-300
+                    text-black
+                    font-semibold
+                    shadow-lg
+                    transition
+                    cursor-pointer
+                  "
+                >
+
+                  <FaGraduationCap />
+
+                  View Admissions
+
+                  <FaArrowRight className="text-xs" />
+
+                </motion.button>
+
+              </Link>
+
+              {/* PROSPECTUS */}
+
+              <Link to="/academics/prospectus">
+
+                <motion.button
+                  whileHover={{
+                    y: -2,
+                    backgroundColor: "rgba(255,255,255,0.12)",
+                  }}
+                  whileTap={{
+                    scale: 0.97,
+                  }}
+                  className="
+                    w-full
+                    sm:w-auto
+                    px-7
+                    py-3.5
+                    rounded-lg
+                    border
+                    border-white/30
+                    bg-white/5
+                    backdrop-blur-sm
+                    text-white
+                    font-semibold
+                    transition
+                    cursor-pointer
+                  "
+                >
+
+                  Download Prospectus
+
+                </motion.button>
+
+              </Link>
+
+            </motion.div>
+
+            {/* TRUST POINTS */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                delay: 0.7,
+                duration: 0.8,
+              }}
+              className="
+                mt-8
+                flex
+                flex-wrap
+                gap-x-6
+                gap-y-3
                 text-xs
                 sm:text-sm
-                md:text-base
-                font-bold
-                tracking-[0.12em]
+                text-white/70
               "
             >
 
-              <span className="text-orange-400">
-                JAI HIND
+              <span className="flex items-center gap-2">
+                <FaCheck className="text-yellow-400" />
+                Academic Excellence
               </span>
 
-              <span className="mx-2 text-white/60">
-                •
+              <span className="flex items-center gap-2">
+                <FaCheck className="text-yellow-400" />
+                Experienced Faculty
               </span>
 
-              <span className="text-white">
-                VANDE MATARAM
+              <span className="flex items-center gap-2">
+                <FaCheck className="text-yellow-400" />
+                Holistic Development
               </span>
 
-              <span className="mx-2 text-white/60">
-                •
-              </span>
+            </motion.div>
 
-              <span className="text-green-400">
-                PROUD TO BE INDIAN
-              </span>
-
-            </p>
-
-          </motion.div>
+          </div>
 
         </div>
 
       </div>
 
-
       {/* =====================================================
-          DECORATIVE ASHOKA CHAKRA
+          SLIDER INDICATORS
       ===================================================== */}
 
-      <motion.div
-        animate={{
-          rotate: -360,
-        }}
-        transition={{
-          duration: 35,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="
-          absolute
-          hidden
-          lg:flex
-          right-[-100px]
-          top-[15%]
-          w-[300px]
-          h-[300px]
-          rounded-full
-          border
-          border-blue-300/10
-          items-center
-          justify-center
-          text-[260px]
-          text-blue-300/10
-          z-10
-        "
-      >
-        ☸
-      </motion.div>
+      {activeImages.length > 1 && (
+        <div className="absolute bottom-8 left-5 sm:left-8 lg:left-12 z-20 flex gap-2">
 
+          {activeImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrent(index)}
+              className={`
+                h-1 rounded-full transition-all duration-300
+                ${
+                  current === index
+                    ? "w-8 bg-yellow-400"
+                    : "w-3 bg-white/50"
+                }
+              `}
+            />
+          ))}
 
-      {/* =====================================================
-          BOTTOM TRICOLOR WAVE
-      ===================================================== */}
-
-      <div
-        className="
-          absolute
-          bottom-0
-          left-0
-          w-full
-          h-20
-          z-20
-          pointer-events-none
-        "
-      >
-
-        <div
-          className="
-            absolute
-            bottom-0
-            left-0
-            w-full
-            h-1
-            bg-orange-500
-          "
-        />
-
-        <div
-          className="
-            absolute
-            bottom-1
-            left-0
-            w-full
-            h-1
-            bg-white
-          "
-        />
-
-        <div
-          className="
-            absolute
-            bottom-2
-            left-0
-            w-full
-            h-1
-            bg-green-600
-          "
-        />
-
-      </div>
-
+        </div>
+      )}
 
       {/* =====================================================
           WHATSAPP
@@ -865,7 +523,7 @@ const Herosection = () => {
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{
-          scale: 1.1,
+          scale: 1.08,
         }}
         whileTap={{
           scale: 0.95,
@@ -876,19 +534,25 @@ const Herosection = () => {
           right-4
           md:bottom-6
           md:right-6
+          w-14
+          h-14
+          flex
+          items-center
+          justify-center
           bg-green-500
+          hover:bg-green-600
           text-white
-          p-4
           rounded-full
           shadow-2xl
           z-50
+          transition
         "
+        aria-label="Contact us on WhatsApp"
       >
 
-        <FaWhatsapp size={26} />
+        <FaWhatsapp size={27} />
 
       </motion.a>
-
 
       {/* =====================================================
           QUICK HELP
@@ -896,38 +560,39 @@ const Herosection = () => {
 
       <motion.button
         whileHover={{
-          scale: 1.05,
+          y: -2,
         }}
-        onClick={() => {
-          setOpenChat(true);
-          setChatStep("main");
-          setSelectedClass("");
+        whileTap={{
+          scale: 0.96,
         }}
+        onClick={openQuickHelp}
         className="
           fixed
-          bottom-20
+          bottom-[84px]
           right-4
           md:bottom-24
           md:right-6
-          bg-gradient-to-r
-          from-orange-500
-          to-yellow-400
-          text-white
+          bg-yellow-400
+          hover:bg-yellow-300
+          text-black
           px-4
-          py-3
-          rounded-full
+          py-2.5
+          rounded-lg
           shadow-xl
           z-50
           font-semibold
           text-sm
+          transition
+          cursor-pointer
         "
       >
+
         Quick Help
+
       </motion.button>
 
-
       {/* =====================================================
-          CHAT MODAL
+          QUICK HELP MODAL
       ===================================================== */}
 
       <AnimatePresence>
@@ -935,27 +600,34 @@ const Herosection = () => {
         {openChat && (
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
             className="
               fixed
               inset-0
+              z-[100]
               bg-black/70
               backdrop-blur-sm
-              z-[100]
               flex
               items-center
               justify-center
               px-4
             "
+            onClick={closeQuickHelp}
           >
 
             <motion.div
               initial={{
                 opacity: 0,
-                scale: 0.9,
-                y: 20,
+                scale: 0.95,
+                y: 15,
               }}
               animate={{
                 opacity: 1,
@@ -964,71 +636,63 @@ const Herosection = () => {
               }}
               exit={{
                 opacity: 0,
-                scale: 0.9,
-                y: 20,
+                scale: 0.95,
+                y: 15,
               }}
+              transition={{
+                duration: 0.25,
+              }}
+              onClick={(e) => e.stopPropagation()}
               className="
                 bg-white
                 w-full
                 max-w-md
                 rounded-2xl
+                overflow-hidden
                 shadow-2xl
-                max-h-[80vh]
+                max-h-[85vh]
                 flex
                 flex-col
-                overflow-hidden
               "
             >
 
-              {/* TRICOLOR */}
+              {/* MODAL HEADER */}
 
-              <div className="h-1 bg-orange-500" />
-              <div className="h-1 bg-white" />
-              <div className="h-1 bg-green-600" />
+              <div className="bg-yellow-400 px-5 py-4 flex items-center justify-between">
 
+                <div>
 
-              {/* HEADER */}
+                  <p className="text-xs text-black/60 uppercase tracking-wider">
+                    School Assistant
+                  </p>
 
-              <div
-                className="
-                  bg-gradient-to-r
-                  from-orange-500
-                  to-yellow-400
-                  px-5
-                  py-4
-                  flex
-                  justify-between
-                  text-white
-                "
-              >
+                  <h3 className="text-lg font-bold text-black">
+                    How can we help?
+                  </h3>
 
-                <b>
-                  🇮🇳 School Assistant
-                </b>
+                </div>
 
                 <button
-                  onClick={() => setOpenChat(false)}
-                  className="hover:scale-110 transition"
+                  onClick={closeQuickHelp}
+                  className="
+                    w-9
+                    h-9
+                    rounded-full
+                    bg-black/10
+                    hover:bg-black/20
+                    transition
+                  "
                 >
-                  ✖
+                  ✕
                 </button>
 
               </div>
 
+              {/* MODAL BODY */}
 
-              {/* BODY */}
+              <div className="p-4 overflow-y-auto space-y-3">
 
-              <div
-                className="
-                  p-4
-                  overflow-y-auto
-                  flex-1
-                  space-y-3
-                  text-sm
-                "
-              >
-
-                <div className="bg-gray-100 p-3 rounded-xl">
+                <div className="bg-gray-100 rounded-xl p-4 text-gray-700">
 
                   <b>Namaste 🙏</b>
 
@@ -1038,18 +702,23 @@ const Herosection = () => {
 
                 </div>
 
+                {/* MAIN */}
 
                 {chatStep === "main" && (
-                  <>
+
+                  <div className="space-y-2">
 
                     <button
                       onClick={() => setChatStep("admission")}
                       className="
                         w-full
+                        p-3
+                        rounded-xl
                         border
-                        rounded-lg
-                        py-2.5
-                        hover:bg-orange-50
+                        border-gray-200
+                        text-left
+                        hover:bg-yellow-50
+                        hover:border-yellow-300
                         transition
                       "
                     >
@@ -1060,10 +729,13 @@ const Herosection = () => {
                       onClick={() => setChatStep("fee")}
                       className="
                         w-full
+                        p-3
+                        rounded-xl
                         border
-                        rounded-lg
-                        py-2.5
-                        hover:bg-orange-50
+                        border-gray-200
+                        text-left
+                        hover:bg-yellow-50
+                        hover:border-yellow-300
                         transition
                       "
                     >
@@ -1074,10 +746,13 @@ const Herosection = () => {
                       onClick={() => setChatStep("facilities")}
                       className="
                         w-full
+                        p-3
+                        rounded-xl
                         border
-                        rounded-lg
-                        py-2.5
-                        hover:bg-green-50
+                        border-gray-200
+                        text-left
+                        hover:bg-yellow-50
+                        hover:border-yellow-300
                         transition
                       "
                     >
@@ -1088,38 +763,41 @@ const Herosection = () => {
                       onClick={() => setChatStep("executive")}
                       className="
                         w-full
+                        p-3
+                        rounded-xl
                         border
-                        rounded-lg
-                        py-2.5
-                        hover:bg-green-50
+                        border-gray-200
+                        text-left
+                        hover:bg-yellow-50
+                        hover:border-yellow-300
                         transition
                       "
                     >
                       📞 Talk with Executive
                     </button>
 
-                  </>
+                  </div>
                 )}
 
+                {/* CLASS SELECTION */}
 
                 {(chatStep === "admission" ||
                   chatStep === "fee") && (
 
-                  <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
 
                     {classList.map((cls) => (
 
                       <button
                         key={cls}
-                        onClick={() =>
-                          setSelectedClass(cls)
-                        }
+                        onClick={() => setSelectedClass(cls)}
                         className="
-                          w-full
+                          p-2.5
+                          rounded-xl
                           border
-                          rounded-lg
-                          py-2
-                          hover:bg-orange-50
+                          border-gray-200
+                          hover:bg-yellow-50
+                          hover:border-yellow-300
                           transition
                         "
                       >
@@ -1129,81 +807,150 @@ const Herosection = () => {
                     ))}
 
                   </div>
-
                 )}
 
+                {/* RESULT */}
 
                 {selectedClass && (
 
-                  <div
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 10,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
                     className="
-                      bg-gray-100
                       p-4
+                      bg-gray-50
                       rounded-xl
-                      border-l-4
-                      border-orange-500
+                      border
+                      border-yellow-200
                     "
                   >
 
-                    {chatStep === "admission"
-                      ? admissionInfo[selectedClass]
-                      : feeStructure[selectedClass]}
+                    <p className="font-bold text-gray-900">
+                      {selectedClass}
+                    </p>
 
-                  </div>
+                    <p className="mt-1 text-gray-600 text-sm">
+                      {chatStep === "admission"
+                        ? admissionInfo[selectedClass]
+                        : feeStructure[selectedClass]}
+                    </p>
 
+                  </motion.div>
                 )}
 
+                {/* FACILITIES */}
 
                 {chatStep === "facilities" && (
 
-                  <div className="bg-gray-100 p-4 rounded-xl">
+                  <div className="bg-gray-50 rounded-xl p-4">
 
-                    <ul className="list-disc ml-5 space-y-1">
+                    <ul className="space-y-2">
 
-                      {schoolFacilities.map((f, i) => (
-                        <li key={i}>{f}</li>
+                      {schoolFacilities.map((facility, index) => (
+
+                        <li
+                          key={index}
+                          className="flex items-center gap-2 text-gray-700"
+                        >
+
+                          <span className="text-green-500">
+                            <FaCheck size={12} />
+                          </span>
+
+                          {facility}
+
+                        </li>
+
                       ))}
 
                     </ul>
 
                   </div>
-
                 )}
 
+                {/* EXECUTIVE */}
 
                 {chatStep === "executive" && (
 
-                  <div className="bg-gray-100 p-4 rounded-xl">
+                  <div className="bg-gray-50 rounded-xl p-4">
 
-                    Call / WhatsApp:
+                    <p className="text-xs text-gray-500 uppercase">
+                      Contact School Executive
+                    </p>
 
-                    <br />
-
-                    <b className="text-green-600">
+                    <p className="text-xl font-bold mt-1">
                       7352205506
-                    </b>
+                    </p>
+
+                    <div className="grid grid-cols-2 gap-2 mt-4">
+
+                      <a
+                        href="tel:7352205506"
+                        className="
+                          flex
+                          items-center
+                          justify-center
+                          gap-2
+                          bg-black
+                          text-white
+                          py-2.5
+                          rounded-lg
+                          font-semibold
+                        "
+                      >
+                        <FaPhone size={13} />
+                        Call
+                      </a>
+
+                      <a
+                        href="https://wa.me/917352205506"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                          flex
+                          items-center
+                          justify-center
+                          gap-2
+                          bg-green-500
+                          text-white
+                          py-2.5
+                          rounded-lg
+                          font-semibold
+                        "
+                      >
+                        <FaWhatsapp size={16} />
+                        WhatsApp
+                      </a>
+
+                    </div>
 
                   </div>
-
                 )}
 
+                {/* BACK */}
 
                 {chatStep !== "main" && (
 
                   <button
-                    onClick={() => {
-                      setChatStep("main");
-                      setSelectedClass("");
-                    }}
+                    onClick={goBack}
                     className="
                       w-full
                       border
-                      rounded-lg
+                      border-gray-200
+                      rounded-xl
                       py-2.5
-                      hover:bg-gray-100
+                      text-gray-600
+                      hover:bg-gray-50
+                      transition
                     "
                   >
-                    ⬅ Back
+                    ← Back
                   </button>
 
                 )}
