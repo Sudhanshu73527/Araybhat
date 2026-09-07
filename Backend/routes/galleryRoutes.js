@@ -8,7 +8,23 @@ const router = express.Router();
 
 /* UPLOAD IMAGE */
 
-router.post("/upload",upload.single("image"),async(req,res)=>{
+const parseGalleryUpload = (req, res) =>
+new Promise((resolve, reject) => {
+upload.single("image")(req, res, (err) => {
+if (err) {
+reject(err);
+return;
+}
+
+resolve();
+});
+});
+
+router.post("/upload",async(req,res)=>{
+
+try{
+
+await parseGalleryUpload(req, res);
 
 if(!req.file){
 
@@ -16,17 +32,42 @@ return res.status(400).json({message:"No file uploaded"});
 
 }
 
-const uploadedImage = await uploadBufferToCloudinary(req.file.buffer,"gallery");
+const isImage = req.file.mimetype.startsWith("image/");
+const isVideo = req.file.mimetype.startsWith("video/");
+
+if(!isImage && !isVideo){
+
+return res.status(400).json({message:"Only image or video files are allowed"});
+
+}
+
+const uploadedImage = await uploadBufferToCloudinary(
+req.file.buffer,
+"gallery",
+{
+resource_type:isVideo ? "video" : "image",
+chunk_size:isVideo ? 6000000 : undefined
+}
+);
 
 const newImage = new Gallery({
 
-image:uploadedImage.secure_url
+image:uploadedImage.secure_url || uploadedImage.url,
+mediaType:isVideo ? "video" : "image"
 
 });
 
 await newImage.save();
 
 res.json(newImage);
+
+}catch(error){
+
+res.status(500).json({
+message:error.message || "Upload failed"
+});
+
+}
 
 });
 

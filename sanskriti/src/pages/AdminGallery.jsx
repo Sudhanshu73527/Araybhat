@@ -5,6 +5,7 @@ const AdminGallery = () => {
   const [images, setImages] = useState([]);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [previewType, setPreviewType] = useState("image");
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   // 🔥 Auto hide message
@@ -31,7 +32,7 @@ const AdminGallery = () => {
   // UPLOAD
   const uploadImage = async () => {
     if (!file) {
-      setMessage("⚠️ Please select an image first");
+      setMessage("⚠️ Please select an image or video first");
       return;
     }
 
@@ -50,16 +51,18 @@ const AdminGallery = () => {
       );
 
       if (!res.ok) {
-        throw new Error("Upload Failed");
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || "Upload Failed");
       }
 
       setFile(null);
       setPreview(null);
-      setMessage("✅ Image Uploaded Successfully!");
+      setPreviewType("image");
+      setMessage("✅ Media Uploaded Successfully!");
 
       fetchImages();
     } catch (error) {
-      setMessage("❌ Upload Failed!");
+      setMessage(`❌ ${error.message}`);
     } finally {
       setUploading(false);
     }
@@ -103,12 +106,12 @@ const AdminGallery = () => {
           </h1>
 
           <p className="text-yellow-500 mt-1">
-            Upload and manage your gallery images.
+            Upload and manage your gallery images and videos.
           </p>
         </div>
 
         <div className="bg-white shadow-lg rounded-2xl px-6 py-4">
-          <p className="text-gray-500 text-sm">Total Images</p>
+          <p className="text-gray-500 text-sm">Total Items</p>
 
           <h2 className="text-3xl font-bold text-indigo-600">
             {images.length}
@@ -121,6 +124,7 @@ const AdminGallery = () => {
         <div className="flex flex-col md:flex-row gap-4 items-center">
           <input
             type="file"
+            accept="image/*,video/*"
             className="border-2 border-dashed border-indigo-400 rounded-xl p-3 w-full"
             onChange={(e) => {
               const selected = e.target.files[0];
@@ -128,6 +132,9 @@ const AdminGallery = () => {
 
               if (selected) {
                 setPreview(URL.createObjectURL(selected));
+                setPreviewType(
+                  selected.type.startsWith("video/") ? "video" : "image"
+                );
               }
             }}
           />
@@ -179,10 +186,18 @@ const AdminGallery = () => {
         <div className="mb-8">
           <h2 className="font-bold mb-3">Preview</h2>
 
-          <img
-            src={preview}
-            className="w-52 h-52 rounded-2xl object-cover shadow-xl border-4 border-white"
-          />
+          {previewType === "video" ? (
+            <video
+              src={preview}
+              controls
+              className="w-52 h-52 rounded-2xl object-cover shadow-xl border-4 border-white"
+            />
+          ) : (
+            <img
+              src={preview}
+              className="w-52 h-52 rounded-2xl object-cover shadow-xl border-4 border-white"
+            />
+          )}
         </div>
       )}
 
@@ -194,10 +209,18 @@ const AdminGallery = () => {
             className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 group"
           >
             <div className="overflow-hidden">
-              <img
-                src={getImageUrl(img.image)}
-                className="w-full h-48 object-cover group-hover:scale-110 duration-500"
-              />
+              {img.mediaType === "video" ? (
+                <video
+                  src={getImageUrl(img.image)}
+                  controls
+                  className="w-full h-48 object-cover"
+                />
+              ) : (
+                <img
+                  src={getImageUrl(img.image)}
+                  className="w-full h-48 object-cover group-hover:scale-110 duration-500"
+                />
+              )}
             </div>
 
             <div className="p-4">

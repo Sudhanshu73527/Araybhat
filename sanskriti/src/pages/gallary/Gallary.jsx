@@ -6,6 +6,17 @@ const Gallary = () => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const isVideoItem = (item) => {
+    if (item.mediaType) {
+      return item.mediaType === "video";
+    }
+
+    const url = (item.image || "").toLowerCase();
+    return [".mp4", ".webm", ".ogg", ".mov", ".m4v"].some((ext) =>
+      url.includes(ext)
+    );
+  };
+
   // FETCH IMAGES FROM BACKEND
   useEffect(() => {
 
@@ -45,18 +56,27 @@ const Gallary = () => {
 
           {images.map((img) => {
             const imageUrl = getImageUrl(img.image);
+            const isVideo = isVideoItem(img);
 
             return (
               <div
                 key={img._id}
-                onClick={() => setSelectedImage(imageUrl)}
+                onClick={() => setSelectedImage({ url: imageUrl, isVideo })}
                 className="cursor-pointer overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition duration-500 group"
               >
-                <img
-                  src={imageUrl}
-                  alt="School Gallery"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
-                />
+                {isVideo ? (
+                  <video
+                    src={imageUrl}
+                    controls
+                    className="w-full h-64 object-cover"
+                  />
+                ) : (
+                  <img
+                    src={imageUrl}
+                    alt="School Gallery"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
+                  />
+                )}
               </div>
             );
           })}
@@ -79,11 +99,19 @@ const Gallary = () => {
                 ×
               </button>
 
-              <img
-                src={selectedImage}
-                alt="Selected"
-                className="w-full max-h-[80vh] object-contain rounded-xl"
-              />
+              {selectedImage.isVideo ? (
+                <video
+                  src={selectedImage.url}
+                  controls
+                  className="w-full max-h-[80vh] object-contain rounded-xl"
+                />
+              ) : (
+                <img
+                  src={selectedImage.url}
+                  alt="Selected"
+                  className="w-full max-h-[80vh] object-contain rounded-xl"
+                />
+              )}
 
             </div>
 

@@ -2,7 +2,15 @@ import mongoose from "mongoose";
 
 const gallerySchema = new mongoose.Schema({
 
-image:String
+image: {
+type: String,
+required: true
+},
+mediaType: {
+type: String,
+enum: ["image", "video"],
+default: "image"
+}
 
 },{timestamps:true});
 
